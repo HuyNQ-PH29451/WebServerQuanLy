@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.navbar {
+  padding: 0;
+  margin: 0; }
+
+.a-logo-header {
+  width: 200px;
+  height: 67px; }
+
+.img-logo-header {
+  width: 200px;
+  height: 67px;
+  background-color: #F37022; }
+
+.nav-link {
+  color: black; }
+
+.nav-link:hover {
+  color: #F37022; }
+
+.nav-link:active {
+  color: black; }
+
+.user-avatar {
+  width: 50px;
+  height: 50px; }
+
+#userDropdown {
+  color: black;
+  font-size: 18px;
+  font-weight: 500; }
+
+.footer {
+  background-color: #192041; }
+
+.logo-footer {
+  width: 200px;
+  height: 67px; }
+
+.card-user {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #124DA3;
+  border-radius: 5px; }
+
+.card-categories {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #F37022;
+  border-radius: 5px; }
+
+.card-products {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #4EB748;
+  border-radius: 5px; }
+
+.total-detail > img {
+  width: 50px;
+  height: 50px; }
+
+.btn-users {
+  background-color: #124DA3;
+  color: white; }
+
+.btn-users:hover {
+  background-color: white;
+  color: #124DA3;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #124DA3;
+  border-radius: 5px; }
+
+.btn-categories {
+  background-color: #F37022;
+  color: white; }
+
+.btn-categories:hover {
+  background-color: white;
+  color: #F37022;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #F37022;
+  border-radius: 5px; }
+
+.btn-products {
+  background-color: #4EB748;
+  color: white; }
+
+.btn-products:hover {
+  background-color: white;
+  color: #4EB748;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #4EB748;
+  border-radius: 5px; }
+
+.btn-add {
+  background-color: #3c6efd;
+  color: white; }
+
+.btn-add:hover {
+  background-color: white;
+  color: #3c6efd;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #3c6efd;
+  border-radius: 5px; }

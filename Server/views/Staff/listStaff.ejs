@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+</head>
+
+<body class="m-0 p-0 container-fluid">
+    <%- include('../inc/header') %>
+        <div class="m-4">
+            <h1 style="margin-left:20px ;">QUẢN LÝ NHÂN VIÊN</h1>
+            <!-- <div class="input-group">
+                <span class="input-group-text col-md-1">Search</span>
+                
+                <input type="text" class="form-control" placeholder="Name" id="searchInput" onkeyup="searchData()">
+             
+              
+            </div> -->
+            <% if(listStaff) {%>
+                <table class="table table-striped" id="resultTable">
+                    <thead>
+                        <tr class="text-center">
+                            
+                            <th  scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">PassWord</th>
+                            <th></th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% listStaff.forEach((item)=> {
+                            %>
+
+                            <tr class="align-middle">
+                                
+                                <td>
+                                    <%= item.id %>
+                                </td>
+
+                                <td>
+                                    <%= item.Fullname %>
+                                </td>
+                                <td scope="row">
+                                   <%= item.Email %>
+                                </td>
+                                <td scope="row" class="masked">
+                                   <%= item.Password %>
+                                </td>
+                                
+                               
+                                
+                                <td class="text-center" >
+                                    
+                                    <button data-item-id="<%= item.id %>" 
+                                        data-item-name="<%= item.Fullname %>"
+                                        data-item-email="<%= item.Email %>"
+                                        data-item-pass="<%= item.Password %>" 
+                                        
+                                        type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#updateModal" >Edit</button>
+
+                                        <!--   <button data-item-id="<%= item.id %>" data-item-name="<%= item.Fullname %>"
+                                        class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">Delete</button> -->
+                                </td>
+                             
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% }else{ %>
+                    <h3>Không có dữ liệu</h3>
+                    <% } %>
+                      <!-- <div class="d-flex justify-content-between align-items-center">
+                            <p class="m-0">Showing:10/100 items</p>
+                            <nav aria-label="Page navigation example" class="">
+                                <ul class="pagination m-0">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>--> 
+        </div>
+        
+       
+        
+        <!-- Modal Edit-->
+        <div class="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+         <h1 class="modal-title fs-5" id="updateModalLabel">Update Staffs</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     </div>
+                    <form id="updateForm" action="staffs/edit" method="POST" >
+
+                        <div class="modal-body">
+                            <div class="input-group" style="margin-top: 10px;">
+                            <label for="tenStaff" class="input-group-text" >FullName</label>
+                            <input name="tenStaff"  id="tenStaff" type="text" aria-label="First name" class="form-control">
+                           </div>
+
+                           <div class="input-group" style="margin-top: 10px;">
+                            <label for="emailStaff" class="input-group-text" >Email</label>
+                            <input name="emailStaff"  id="emailStaff" readonly type="text" aria-label="First name" class="form-control">
+                           </div>
+
+                           <div class="input-group" style="margin-top: 10px;">
+                            <label for="mkStaff" class="input-group-text">Password</label>
+                            <input name="mkStaff" id="mkStaff" type="text" aria-label="First name" class="form-control">
+                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Staff</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="staffs/delete" method="post">
+                        <div class="modal-body">
+                            Bạn chắc chắn muốn xóa?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('../inc/footer') %>
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+                integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+                crossorigin="anonymous"></script>
+            
+
+            <script>
+                const editButtons = document.querySelectorAll('.btn.btn-success');
+                const editModal = new bootstrap.Modal(document.getElementById('updateModal'));
+                const editForm = document.getElementById('updateForm');
+
+                // Bắt sự kiện khi nút "Edit" được nhấn
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Lấy giá trị item_id và item_name từ thuộc tính dữ liệu (data attribute)
+                        const itemId = this.getAttribute('data-item-id');
+                        const itemName = this.getAttribute('data-item-name');
+                        const itemEmail = this.getAttribute('data-item-email');
+                        const itemPass = this.getAttribute('data-item-pass');
+                        
+                       
+                        // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalBody = editModal._element.querySelector('.modal-body');
+                        const nameInput = editForm.querySelector('#tenStaff');
+                        const passInput = editForm.querySelector('#mkStaff');
+                        const emailInput = editForm.querySelector('#emailStaff');
+
+                        // Cập nhật nội dung modal và input với item_id và item_name tương ứng
+                        nameInput.value = itemName;
+                        passInput.value=itemPass;
+                        emailInput.value=itemEmail;
+                        // Thay đổi giá trị của thuộc tính action của form khi nút "Edit" được nhấn
+                        editForm.action = `staffs/edit/${itemId}`;
+                    });
+                });
+            </script>
+
+
+            
+            <script>
+                const deleteButtons = document.querySelectorAll('.btn.btn-danger');
+                const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                const deleteForm = document.querySelector('form[action="staffs/delete"]');
+
+                // Bắt sự kiện khi nút "Delete" được nhấn
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Lấy giá trị item_id từ thuộc tính dữ liệu (data attribute)
+                        const itemId = this.getAttribute('data-item-id');
+                        const itemName = this.getAttribute('data-item-name');
+                        // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalBody = deleteModal._element.querySelector('.modal-body');
+                        // Cập nhật nội dung modal với item_id tương ứng
+                        modalBody.textContent = `Do you want to delete the product named "${itemName}"?`;
+
+                        // Thay đổi giá trị của thuộc tính action của form khi nút "Delete" được nhấn
+                        deleteForm.action = `staffs/delete/${itemId}`;
+                    });
+                });
+            </script>
+
+            
+            <script>
+  // Hàm search sẽ được gọi khi người dùng nhập vào ô tìm kiếm
+  function searchData() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("resultTable");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[2]; // chỉ tìm kiếm trong cột ID
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = ""; // Hiển thị hàng nếu có từ khóa tìm kiếm
+              } else {
+                  tr[i].style.display = "none"; // Ẩn hàng nếu không phù hợp với từ khóa tìm kiếm
+              }
+          }
+      }
+  }
+</script>
+   
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#resultTable').DataTable();
+      });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var maskedCells = document.querySelectorAll('.masked');
+    maskedCells.forEach(function(cell) {
+        var originalText = cell.innerText;
+        cell.innerHTML = "*".repeat(originalText.length);
+    });
+});
+    </script>
+</body>
+
+
+</html>
+<link rel="stylesheet" href="https://unpkg.com/@adminkit/core@latest/dist/css/app.css">
+<link rel="stylesheet" href="./style.css">

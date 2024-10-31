@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/app.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <style>
+        .footer {
+            background-color: #192041;
+            
+            bottom: 0;
+            width: 100%;
+            color: white;
+        }
+
+        .logo-footer {
+            width: 200px;
+            height: 67px;
+        }
+
+        .pagination-container {
+            
+            bottom: 120px;
+            width: 100%;
+            background-color: #fff;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .label-width{
+            width: 120px;
+        }
+        
+    </style>
+</head>
+
+<body class="m-0 p-0 container-fluid">
+    <%-include('../inc/header') %>
+
+
+        <div class="m-4">
+            <h1 style="margin-top:20px ;">QUẢN LÝ ĐƠN HÀNG</h1>
+
+            <!-- <div class="input-group" style="width: 1480px;">
+                <span class="input-group-text col-md-1">Search</span>
+                  <input type="text" class="form-control" placeholder="Số điện thoại" name="q" id="searchInput" onkeyup="searchData()">
+               
+                
+              </div> -->
+            <!-- <a href="/Orders" type="button" class="btn btn-add fw-medium float-end mb-2 " data-bs-toggle="modal"
+                data-bs-target="#addModal">Add</a> -->
+            <% if (listdonhang) { %>
+                <table class="table table-striped" id="resultTable">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Tên Đơn Hàng</th>
+                            <th scope="col">Mã Đơn Hàng</th>
+                            <th scope="col">Mã User</th>
+                            <th scope="col">Địa Chỉ</th>
+                            <th scope="col">Ngày Đặt</th>
+                            <th scope="col">Phương Thức Thanh Toán</th>
+                            <th scope="col">Phương Thức Vận Chuyển</th>
+                            <th scope="col">Trạng Thái</th>
+                            <th scope="col">Tổng số lượng</th>
+                            <th scope="col">Tổng Tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody >
+
+                        <% listdonhang.forEach((donhang)=>{ %>
+                            <tr class="align-middle">
+
+                                <td style="border: 1px; width: 100px;">
+                                    <% for(let i=0; i<donhang.product.length; i++) { %>
+                                        <img src="<%= donhang.product[i].image  %>" style="width: 150px; height: 100px;" alt=""> 
+                                         <%= donhang.product[i].name %> <br>
+                                          <%= donhang.product[i].size %> : 
+                                         <%= donhang.product[i].soluong %> -
+                                         <%= donhang.product[i].tongtien %> VND
+
+                                         <br> <br>
+                                    <% } %>
+                                    
+                                    
+                                    
+                                    
+
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.id %>
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.id_user %>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <%= donhang.diachinhanhang.address %> -
+                                    <%= donhang.diachinhanhang.country %> <br>
+                                    <%= donhang.diachinhanhang.fullname %> -
+                                    <%= donhang.diachinhanhang.phone %> 
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.ngaydat %>
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.phuongthucthanhtoan %>
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.phuongthucvanchuyen %>
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.status %>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.tongsanpham %>
+                                </td>
+                                <td class="text-center">
+                                    <%= donhang.totalPayment %>
+                                </td>
+                                <td class="text-center">
+
+                                    <button data-item-id="<%= donhang.id %>"
+                                        data-item-tendonhang="<%= donhang.TenDonHang %>"
+                                        data-item-id_user="<%= donhang.id_user %>"
+                                        data-item-address="<%= donhang.Address %>"
+                                        data-item-nameuser="<%= donhang.Name_User %>"
+                                        data-item-nameproduct="<%= donhang.Name_product %>"
+                                        data-item-ngaydat="<%= donhang.NgayDat %>"
+                                        data-item-staff="<%= donhang.Name_Staff %>"
+                                        data-item-status="<%= donhang.status %>" class="btn btn-success m-2"
+                                        data-bs-toggle="modal" data-item-id data-bs-target="#editModal" type="button">Edit</button>
+
+                                    <!-- <button data-item-id="<%= donhang.id %>" data-item-name="<%= donhang.TenDonHang %>"
+                                        class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">Delete</button> -->
+                                </td>
+                            </tr>
+                            <% }) %>
+
+                    </tbody>
+                </table>
+                <% }else { %>
+                    <h3>Không có dữ liệu</h3>
+                    <%}%>
+
+        </div>
+        
+        <!-- Modal Edit -->
+        <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Trạng Thái</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editform" action="Orders/edit" method="POST" >
+                <div class="modal-body">
+
+                        <label for="id_user" class="input-group-text label-width">User</label>
+                        <input name="id_user" type="text" id="id_user" class="form-control">
+                    
+                        <label for="Status" class="input-group-text label-width" style="margin-top: 10px;">Status</label>
+                        <!-- <input id="Status" type="text" class="form-control" aria-label="Status" name="Status" required> </input> -->
+                        <select id="Status" class="form-select mt-1" aria-label="Status" name="Status" required>
+                            <% options.forEach(option => { %>
+                                <option value="<%= option.value %>"><%= option.label %></option>
+                            <% }); %>
+                          </select>
+                    
+                   
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Update </button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        <!-- Modal delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="Orders/delete" method="post">
+                        <div class="modal-body">
+                            Bạn chắc chắn muốn xóa?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%-include('../inc/footer') %>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+                integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+                crossorigin="anonymous"></script>
+
+            <!-- script delete -->
+            <script>
+                const btn_delete = document.querySelectorAll('.btn.btn-danger');
+                const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                const deleteForm = document.querySelector('form[action="Orders/delete"]');
+
+                btn_delete.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const itemId = this.getAttribute('data-item-id');
+                        // console.log(itemId);
+                        const itemTenDonHang = this.getAttribute('data-item-name');
+                        // console.log(itemTenDonHang);
+                        const modalBody = deleteModal._element.querySelector('.modal-body');
+                        modalBody.textContent = `Bạn có chắc muốn xóa ${itemId} ? `;
+                        // Thay đổi giá trị của thuộc tính action của form khi nút "Delete" được nhấn
+                        deleteForm.action = `Orders/delete/${itemId}`;
+                    })
+                })
+            </script>
+
+             <!-- script edit -->
+            <script>
+                var btnEdit = document.querySelectorAll('.btn.btn-success');
+                var myEditModal = new bootstrap.Modal(document.getElementById('editModal'));
+                var editForm = document.getElementById('editform');
+
+                btnEdit.forEach(button =>{
+                    button.addEventListener('click',function(){
+                        const itemid = this.getAttribute('data-item-id');
+                        // const item_tenDonHang = this.getAttribute('data-item-tendonhang'); 
+                        // // console.log('đây là ten donhang:'+item_tenDonHang);
+                        // const item_address = this.getAttribute('data-item-address');
+                        // const item_tenNguoiDung = this.getAttribute('data-item-nameuser');
+                        // const item_tenSanPham = this.getAttribute('data-item-nameproduct');
+                        // const item_NgayDat = this.getAttribute('data-item-ngaydat');
+                        const item_User = this.getAttribute('data-item-id_user');
+                        const item_Status = this.getAttribute('data-item-status');
+                       // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalBody = myEditModal._element.querySelector('.modal-body');
+                        // const input_TenDonHang = editForm.querySelector('#TenDonHang');
+                        // const input_DiaChi = editForm.querySelector('#DiaChi');
+                        // // console.log('đây là giá trị địa chỈ:'+ input_DiaChi.value);
+
+                        // const input_NguoiDung = editForm.querySelector('#NguoiDung');
+                        // const input_NgayDat = editForm.querySelector('#NgayDat');
+                        // const input_NhanVien = editForm.querySelector('#NhanVien');
+                        const input_Status = editForm.querySelector('[name="Status"]');
+                        const input_User = editForm.querySelector('#id_user');
+
+                       
+                        
+                        // Cập nhật nội dung modal và input với item_id và item_name tương ứng
+                        // input_TenDonHang.value = item_tenDonHang;
+                        // input_DiaChi.value = item_address;
+                        // input_NguoiDung.value = item_tenNguoiDung;
+                        // input_NgayDat.value = item_NgayDat;
+                        input_User.value = item_User;
+                        const StatusOptions = input_Status.querySelectorAll('option');
+                        StatusOptions.forEach(option => {
+                            if (option.value === item_Status) {
+                                option.setAttribute('selected', 'selected');
+                            } else {
+                                option.removeAttribute('selected');
+                            }
+                        });
+                        // input_TenSanPham.value = item_tenSanPham;
+                        
+                        editForm.action = `Orders/update/${itemid}`;
+                    });
+                })
+            </script>
+
+<script>
+    // Hàm search sẽ được gọi khi người dùng nhập vào ô tìm kiếm
+    function searchData() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("resultTable");
+        tr = table.getElementsByTagName("tr");
+  
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1]; // chỉ tìm kiếm trong cột ID
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; // Hiển thị hàng nếu có từ khóa tìm kiếm
+                } else {
+                    tr[i].style.display = "none"; // Ẩn hàng nếu không phù hợp với từ khóa tìm kiếm
+                }
+            }
+        }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#resultTable').DataTable();
+      });
+  </script>
+</body>
+
+</html>
+<link rel="stylesheet" href="https://unpkg.com/@adminkit/core@latest/dist/css/app.css">
+<link rel="stylesheet" href="./style.css">

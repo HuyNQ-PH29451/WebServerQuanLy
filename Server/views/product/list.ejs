@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <style>
+        .error-message {
+          color: red;
+          font-size: 12px;
+          margin-top: 5px;
+        }
+        .btn-add{
+            background-color: rgb(0, 26, 255) !important;
+            color: white !important;
+        }
+        
+      </style>
+</head>
+
+<body class="m-0 p-0 container-fluid">
+    <%- include('../inc/header') %>
+        <div class="m-4">
+            <div style="display: flex;">
+            <h1 >QUẢN LÝ SẢN PHẨM</h1>
+            <a href="/products" type="button" class="btn btn-add fw-medium float-end mb-2" data-bs-toggle="modal"
+                data-bs-target="#addModal" style="margin-left: 1020px; width: 150px; height: 35px;" >New Product</a>
+            </div>
+           <!-- <form > <div class="input-group">
+                
+                <span class="input-group-text col-md-1">Search</span>
+                
+                <input type="text" class="form-control" placeholder="Name"  name="itemName" id="searchInput" onkeyup="searchData()">
+             
+            
+            </div></form>
+
+            <select id="sortOption" onchange="sortData()" class="form-select mt-2" style="align-items: end;">
+                <option value="all">All</option>
+                <option value="asc">Giá: Từ Thấp Đến Cao</option>
+                <option value="desc">Giá : Từ Cao Đến Thấp</option>
+                
+                
+            </select> -->
+            
+            
+            <% if(listProducts) {%>
+                <table class="table table-striped" id="resultTable">
+                    <thead>
+                        <tr class="text-center">
+                            <th  scope="col">IMG</th>
+                            
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            
+                            <th  scope="col">Size</th>
+                            <th scope="col">GiaNhap</th>
+                            <th  scope="col">Price</th>
+                            <th  scope="col">Sale</th>
+                            <th  scope="col">Content</th>
+                            <th></th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% listProducts.forEach((item)=> {
+                            %>
+
+                            <tr class="align-middle">
+                                <td><img src="<%= item.Img  %>" style="width: 100px; height: 100px;" alt=""></td>
+                                
+
+                                <td style="text-align: center;">
+                                    <%= item.Name %>
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                   <%= item.Categories %>
+                                </td>
+                            
+                                <td style="width: 100px; align-items: center; ">
+                                    <div style="text-align: center;">
+                                    <div >
+                                        <span>S   : <%= item.Size.S%></span>
+                                     </div>
+                                     <div>
+                                        <span>M   : <%= item.Size.M%></span>
+                                    </div>
+                                    <div>
+                                        <span>L : <%= item.Size.L%></span>
+                                    </div>
+                                    <div>
+                                        <span>XL : <%= item.Size.XL%></span>
+                                    </div>
+                                 </div>
+                                </td>
+                                <td style="text-align: center;">
+                                    <%= item.GiaNhap %>
+                                </td>
+                                <td style="text-align: center;">
+                                    <%= item.Price %>
+                                </td >
+                                 <td style="text-align: center;"><%= item.Sale %></td>
+                                <td>
+                                    <%= item.Content %>
+                                </td>
+                                
+                                <td class="text-center">
+                                    
+                                    <button data-item-id="<%= item.id %>" 
+                                        data-item-idC="<%= item.Categories %>"
+                                        data-item-name="<%= item.Name %>"
+                                        data-item-description="<%= item.Content %>"
+                                        data-item-price="<%= item.Price %>" 
+                                        data-item-image="<%= item.Img %>"
+                                        data-item-size="<%= item.Size %>"
+                                        data-item-sale="<%= item.Sale %>"
+                                        class="btn btn-success m-2" data-bs-toggle="modal" data-item-id
+                                        data-bs-target="#editModal">Edit</button>
+
+
+
+                                        
+                                
+
+                                </td>
+                             
+                            </tr>
+                            
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% }else{ %>
+                    <h3>Không có dữ liệu</h3>
+                    <% } %>
+                        
+        </div>
+        <!-- Modal add -->
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addModalLabel">Add product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="products/add" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            
+                            <label for="inputCode" class="form-label" >Name</label>
+                            <input name="Name" type="text" id="nameProduct" class="form-control" >
+                            <div id="nameError" class="error-message"></div>
+
+                            <label for="cateId">Category</label>
+                            <select class="form-select mt-2" aria-label="Pick Category" name="Categories" required >
+                                <% categories.forEach(item=> { %>
+                                    <option value="<%= item.Name %>">
+                                        <%= item.Name %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                            <label for="imageProduct" class="form-label">Image</label>
+                            <input type="file" aria-label="First name" class="form-control" name="avatar" id="imageProduct">
+
+                            <label for="descriptionProduct" class="form-label">Description</label>
+                            <input name="Content" type="text" id="descriptionProduct" class="form-control">
+                            <div id="descriptionValueError" class="error-message"></div>
+
+                            <label for=" GiaNhap" class="form-label">Giá Nhập</label>
+                            <input name="GiaNhap" type="text" id="GiaNhap" class="form-control">
+                            <div id="GiaNhapValueError" class="error-message"></div>
+
+                            <label for=" priceProduct" class="form-label">Price</label>
+                            <input name="Price" type="text" id="priceProduct" class="form-control">
+                            <div id="priceValueError" class="error-message"></div>
+
+                            <label for="saleProduct" class="form-label">Sale</label>
+                            <input name="Sale" type="number" id="saleProduct" class="form-control">
+                            <div id="saleValueError" class="error-message"></div>
+
+                            <label for="sizeProduct" class="form-label">Size</label>
+                            
+                            <div  id="sizeProduct">
+                                    <div  style=" display: flex; ">
+                                        <div style=" display: flex;width: 50px;">
+                                        <input class="form-check-input"  type="checkbox" value="S" id="sizeProduct1" name="SizeS" checked>
+                                        <label style="margin-left: 10px;" for="sizeProduct1">
+                                            S
+                                        </label>
+                                        </div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlS" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                        
+                                        </div>
+
+                                    <div style=" display: flex;margin-top: 10px;">
+                                        <div style=" display: flex;width: 50px;">
+                                        <input class="form-check-input" type="checkbox" value="M" id="sizeProduct2" name="SizeM" checked >
+                                        <label style="margin-left: 10px;" for="sizeProduct2">
+                                            M
+                                        </label></div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlM" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                    </div>
+
+                                    <div style=" display: flex;margin-top: 10px;">
+                                        <div style=" display: flex;width: 50px;">
+                                        <input class="form-check-input" type="checkbox" value="L" id="sizeProduct3" name="SizeL" checked>
+                                        <label style="margin-left: 10px;" for="sizeProduct3">
+                                            L
+                                        </label></div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlL" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                    </div>
+
+                                    <div style=" display: flex;margin-top: 10px;">
+                                        <div style=" display: flex; width: 50px;">
+                                        <input class="form-check-input" type="checkbox" value="XL" id="sizeProduct4" name="SizeXL" checked>
+                                        <label style="margin-left: 10px;" for="sizeProduct4">
+                                            XL
+                                        </label></div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlXL" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                    </div>
+                                    
+                                </div>
+                        
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" >Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel">Edit product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="editForm" action="products/edit   " method="POST" enctype="multipart/form-data">
+
+                        <div class="modal-body">
+                            
+                            <label for="inputCode" class="form-label" >Name</label>
+                            <input name="Name" type="text" id="nameProduct" class="form-control" >
+                            <label for="cateId">Category</label>
+                            <select class="form-select mt-2" aria-label="Pick Category" name="Categories" required >
+                                <% categories.forEach(item=> { %>
+                                    <option value="<%= item.Name %>">
+                                        <%= item.Name %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                            <label for="imageProduct" class="form-label">Image</label>
+                            <input type="file" aria-label="First name" class="form-control" name="avatar" id="imageProduct">
+                            <label for="descriptionProduct" class="form-label">Description</label>
+                            <input name="Content" type="text" id="descriptionProduct" class="form-control">
+                            <label for=" priceProduct" class="form-label">Price</label>
+                            <input name="Price" type="text" id="priceProduct" class="form-control">
+                            <label for="saleProduct" class="form-label">Sale</label>
+                            <input name="Sale" type="number" id="saleProduct" class="form-control">
+                            <label for="sizeProduct" class="form-label">Size</label>
+                            
+                            <div  id="sizeProduct">
+                                    <div  style=" display: flex; ">
+                                        <div style=" display: flex;width: 50px;">
+                                        <input class="form-check-input"  type="checkbox" value="S" id="sizeProduct1" name="SizeS" checked>
+                                        <label style="margin-left: 10px;" for="sizeProduct1">
+                                            S
+                                        </label>
+                                        </div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlS" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                        
+                                        </div>
+
+                                    <div style=" display: flex;margin-top: 10px;">
+                                        <div style=" display: flex;width: 50px;">
+                                        <input class="form-check-input" type="checkbox" value="M" id="sizeProduct2" name="SizeM" checked >
+                                        <label style="margin-left: 10px;" for="sizeProduct2">
+                                            M
+                                        </label></div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlM" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                    </div>
+
+                                    <div style=" display: flex;margin-top: 10px;">
+                                        <div style=" display: flex;width: 50px;">
+                                        <input class="form-check-input" type="checkbox" value="L" id="sizeProduct3" name="SizeL" checked>
+                                        <label style="margin-left: 10px;" for="sizeProduct3">
+                                            L
+                                        </label></div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlL" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                    </div>
+
+                                    <div style=" display: flex;margin-top: 10px;">
+                                        <div style=" display: flex; width: 50px;">
+                                        <input class="form-check-input" type="checkbox" value="XL" id="sizeProduct4" name="SizeXL" checked>
+                                        <label style="margin-left: 10px;" for="sizeProduct4">
+                                            XL
+                                        </label></div>
+                                        <div style="display: flex; margin-left: 50px;">
+                                            <label style="width: 100px; font-size: medium;" for="SlS">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SlXL" type="number" id="Sl-S" class="form-control" >
+                                            </div>
+                                    </div>
+                                    
+                                </div>
+                        
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="products/delete" method="post">
+                        <div class="modal-body">
+                            Bạn chắc chắn muốn xóa?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('../inc/footer') %>
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+                integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+                crossorigin="anonymous"></script>
+            
+
+            <script>
+                const editButtons = document.querySelectorAll('.btn.btn-success');
+                const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+                const editForm = document.getElementById('editForm');
+
+                // Bắt sự kiện khi nút "Edit" được nhấn
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Lấy giá trị item_id và item_name từ thuộc tính dữ liệu (data attribute)
+                        const itemId = this.getAttribute('data-item-id');
+                        const itemName = this.getAttribute('data-item-name');
+                        const itemIdC = this.getAttribute('data-item-idC');
+                        const itemPrice = this.getAttribute('data-item-price');
+                        const itemDescription = this.getAttribute('data-item-description');
+                        const itemSize = this.getAttribute('data-item-size');
+                        const itemSale = this.getAttribute('data-item-sale');
+                        // const itemIdInput = editModal.querySelector('#itemIdInput');
+                        // itemIdInput.value = itemId;
+                        // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalBody = editModal._element.querySelector('.modal-body');
+                        const nameInput = editForm.querySelector('#nameProduct');
+                        const categoryInput = editForm.querySelector('[name="Categories"]'); // Thêm đoạn này để truy xuất đến menu thả xuống "Category"
+                        const saleinput=editForm.querySelector('#saleProduct')
+                        const priceInput = editForm.querySelector('#priceProduct');
+                        const sizeInput = editForm.querySelector('#sizeProduct');
+                        const descriptionInput = editForm.querySelector('#descriptionProduct');
+
+                        // Cập nhật nội dung modal và input với item_id và item_name tương ứng
+                        nameInput.value = itemName;
+                        categoryInput.value=itemIdC;
+                        priceInput.value = itemPrice;
+                        sizeInput.value= itemSize;
+                        saleinput.value=itemSale;
+                        descriptionInput.value = itemDescription;
+
+                        // Thêm thuộc tính "selected" vào tùy chọn chính xác trong menu thả xuống "Category"
+                        const categoryOptions = categoryInput.querySelectorAll('option');
+                        categoryOptions.forEach(option => {
+                            if (option.value === itemIdC) {
+                                option.setAttribute('selected', 'selected');
+                            } else {
+                                option.removeAttribute('selected');
+                            }
+                        });
+
+                        // Thay đổi giá trị của thuộc tính action của form khi nút "Edit" được nhấn
+                        editForm.action = `products/edit/${itemId}`;
+                    });
+                });
+            </script>
+
+
+            
+            <script>
+                const deleteButtons = document.querySelectorAll('.btn.btn-danger');
+                const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                const deleteForm = document.querySelector('form[action="products/delete"]');
+
+                // Bắt sự kiện khi nút "Delete" được nhấn
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Lấy giá trị item_id từ thuộc tính dữ liệu (data attribute)
+                        const itemId = this.getAttribute('data-item-id');
+                        const itemName = this.getAttribute('data-item-name');
+                        // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalBody = deleteModal._element.querySelector('.modal-body');
+                        // Cập nhật nội dung modal với item_id tương ứng
+                        modalBody.textContent = `Do you want to delete the product named "${itemName}"?`;
+
+                        // Thay đổi giá trị của thuộc tính action của form khi nút "Delete" được nhấn
+                        deleteForm.action = `products/delete/${itemId}`;
+                    });
+                });
+            </script>
+
+            <script>
+  function generateRandomChar() {
+    const outputTextElement = document.getElementById('idProduct');
+
+    // Tạo ngẫu nhiên một ký tự
+    const randomChar = getRandomChar();
+
+    // Đặt giá trị mới cho ô output
+    outputTextElement.value = randomChar;
+  }
+
+  function getRandomChar() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const stringLength = 15; // Độ dài mong muốn của chuỗi
+    let randomString = '';
+
+    for (let i = 0; i < stringLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      randomString += characters.charAt(randomIndex);
+    }
+
+    return randomString;
+  }
+</script>
+
+     
+<script>
+    function saveToFirestore() {
+    // Lấy giá trị từ trường nhập văn bản
+    const inputValue = document.getElementById('sizeProduct').value;
+
+    // Chuyển đổi giá trị thành mảng
+    const inputObject = {};
+    inputValue.split(',').forEach(pair => {
+      const [key, value] = pair.trim().split(':');
+      inputObject[key] = value;
+    });
+    // Lưu mảng vào Firestore (ở đây bạn sẽ lưu vào một collection cụ thể)
+}
+    </script>
+
+    <script>
+  function uploadAndSave() {
+    // Lấy tệp từ trường input
+    const fileInput = document.getElementById('imageProduct');
+    const file = fileInput.files[0];
+
+    // Tạo tham chiếu đến nơi lưu trữ trên Firebase
+    const storageRef = storage.ref();
+
+    // Tạo một thư mục có tên 'images' (bạn có thể đặt tên thư mục theo ý muốn)
+    const imagesRef = storageRef.child('./public/uploads/');
+
+    // Tạo tham chiếu đến tệp trên Firebase Storage
+    const fileRef = imagesRef.child(file.name);
+
+    // Tải tệp lên Firebase Storage
+    fileRef.put(file)
+      .then(snapshot => {
+        console.log('Tệp đã được tải lên thành công');
+
+        // Lấy đường dẫn tới tệp từ Storage
+        return fileRef.getDownloadURL();
+      })
+      .then(downloadURL => {
+        console.log('Đường dẫn tới tệp:', downloadURL);
+
+        // Lưu đường dẫn vào Firestore
+        const collectionRef = admin.firestore().collection('products'); // Thay thế bằng tên collection của bạn
+
+        // Dữ liệu bạn muốn lưu trữ
+        const data = {
+          imageUrl: downloadURL
+        };
+
+        // Thêm dữ liệu vào Firestore
+        return collectionRef.add(data);
+      })
+      .then(docRef => {
+        console.log('Dữ liệu đã được lưu trữ trong Firestore với ID:', docRef.id);
+      })
+      .catch(error => {
+        console.error('Lỗi khi tải lên và lưu vào Firestore:', error);
+      });
+  }
+</script>
+
+<script>
+  // Hàm search sẽ được gọi khi người dùng nhập vào ô tìm kiếm
+  function searchData() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("resultTable");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1]; // chỉ tìm kiếm trong cột ID
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = ""; // Hiển thị hàng nếu có từ khóa tìm kiếm
+              } else {
+                  tr[i].style.display = "none"; // Ẩn hàng nếu không phù hợp với từ khóa tìm kiếm
+              }
+          }
+      }
+  }
+</script>
+
+<script>
+    function sortData() {
+            var select = document.getElementById("sortOption");
+            var sortValue = select.options[select.selectedIndex].value;
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("resultTable");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("td")[4]; // Cột giá
+                    y = rows[i + 1].getElementsByTagName("td")[4]; // Cột giá
+                    if (sortValue === "asc") {
+                        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (sortValue === "desc") {
+                        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+      
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#resultTable').DataTable();
+        });
+    </script>
+
+    <script>
+document.getElementById('addModal').addEventListener('submit', function(event) {
+   // Ngăn chặn form submit
+
+  // Lấy giá trị từ input
+  var nameValue = document.getElementById('nameProduct').value.trim();
+  var descriptionValue = document.getElementById('descriptionProduct').value.trim();
+  var priceValue = document.getElementById('priceProduct').value.trim();
+  var saleValue = document.getElementById('saleProduct').value.trim();
+  // Kiểm tra tính hợp lệ của dữ liệu
+  var isValid = true;
+  if (nameValue === '') {
+    document.getElementById('nameError').textContent = 'Tên không được để trống';
+    isValid = false;
+  } else {
+    document.getElementById('nameError').textContent = '';
+  }
+
+  if (descriptionValue === '') {
+    document.getElementById('descriptionValueError').textContent = 'Thông tin không được để trống';
+    isValid = false;
+  } else {
+    document.getElementById('descriptionValueError').textContent = '';
+  }
+
+  if (priceValue === '') {
+    document.getElementById('priceValueError').textContent = 'Giá không được để trống';
+    isValid = false;
+  } else {
+    document.getElementById('priceValueError').textContent = '';
+  }
+
+  if (saleValue === '') {
+    document.getElementById('saleValueError').textContent = 'Giá Sale không được để trống';
+    isValid = false;
+  } else {
+    document.getElementById('saleValueError').textContent = '';
+  }
+
+
+  // Nếu dữ liệu không hợp lệ, không thực hiện hành động tiếp theo
+  if (!isValid) {
+     event.preventDefault();;
+  }
+
+  // Nếu dữ liệu hợp lệ, bạn có thể gửi dữ liệu đi hoặc thực hiện hành động khác ở đây
+
+});
+</script>
+</body>
+
+
+</html>
+// <link rel="stylesheet" href="https://unpkg.com/@adminkit/core@latest/dist/css/app.css">
+// <link rel="stylesheet" href="./style.css">

@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <title>Users</title>
+   
+</head>
+<body class="m-0 p-0 container-fluid">
+  <%- include('../inc/header') %>
+  <div style="display: inline-block;">
+    
+    <h1 style="margin-left:20px ;">DANH SÁCH KHÁCH HÀNG</h1>
+        <div class="m-4">
+          
+            <div class="input-group">
+              <span  style="width: 80px" class="input-group-text col-md-1">Search</span>
+                <input style="width: 80px" type="text" class="form-control" placeholder="Name" name="q" id="searchUser" onkeyup="searchData()">
+             
+              
+            </div>
+
+            </div>
+</div>
+
+   <% if(listUser){%>
+   <table style="width: 1480px; margin: 22px;" class="table table-hover table-bordered mt-2" id="resultTableU">
+    <thead>
+     <tr class="text-center">
+
+        <th scope="col">Img</th> <th scope="col">UserName</th> <th scope="col">Email</th>  <th scope="col">Phone</th> <th scope="col">Status</th>
+     </tr>
+    </thead>
+    <tbody id="tableBody">
+         <% listUser.forEach((item)=>{ %>
+ <tr class="align-middle">
+      
+      <td  class="text-center" style="width: 15%"><img src="<%= item.Avatar  %>" style="width: 100px; height: 100px;" alt=""></td>
+       <td  class="text-center" style="width: 15%" ><%= item.FullName %></td>
+        <td class="text-center" style="width: 15%"><%= item.Email %></td>
+     
+        <td  class="text-center" style="width: 15%"><%= item.Phone %></td>
+     <td class="text-center" style="width: 15%">
+  <span class="outer-value" style="color: white;background-color: <%= typeof item.Trangthai === 'undefined' ? 'green' : 'red' %>; border-radius: 15px; width: 60px; display: inline-block; padding: 5px;">
+      <% if (typeof item.Trangthai === 'undefined') { %>
+          Active
+      <% } else { %>
+          <span style="color: white;"><%= item.Trangthai %></span>
+      <% } %>
+  </span>
+     </td>
+        <td style="width: 140px" >
+            <button type="button" class="btn <%= item.Trangthai === undefined ? 'btn-danger' : 'btn-primary' %>" data-bs-toggle="modal" data-item-id="<%= item.id %>" data-item-trangthai="<%=item.Trangthai%>" data-bs-target="<%= item.Trangthai === undefined ? '#deleteModal' : '#deleteModal' %>">
+                <%= item.Trangthai === undefined ? 'Khóa tài khoản' : 'Mở khóa tài khoản' %>
+            </button>
+        </td>
+ </tr>
+      <%   }) %>
+    </tbody>  
+ </table>
+ <%} else{ %>
+   <h3>Khong co du lieu</h3>
+   <%} %>
+
+
+   
+   <!-- Modal -->
+  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="deleteModalLabel">Khóa tài khoản user</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="users/delete" method="POST">
+                  <div id="bodytext" class="modal-body">
+                      Bạn chắc chắn muốn khóa tài khoản này?
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                      <button type="submit" class="btn btn-primary">Yes</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+ 
+
+
+   
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+ integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+ crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+ integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+ crossorigin="anonymous"></script>
+ <script>
+
+  //Gán biến deleteButtons bằng đối tượng có class là '.btn.btn-danger' , tức là nút bấm xóa
+  const deleteButtons = document.querySelectorAll('.btn.btn-danger, .btn.btn-primary');
+  //Gán biến deleteForm bằng form có action="users/delete" , trong modal xóa, nhớ truyền chuẩn
+  const deleteForm = document.querySelector('form[action="users/delete"]');
+  const deleteModalLabel = document.getElementById('deleteModalLabel');
+  const bd = document.getElementById('bodytext');
+  const yesButton = document.querySelector('button[type="submit"]');
+  deleteButtons.forEach(button => {
+
+    //Sự kiện ấn vào nút xóa
+      button.addEventListener('click', function () {
+          //Lấy ra id theo tên getAttribute đã đặt ở button xóa data-item-id
+          const itemId = this.getAttribute('data-item-id');
+          const itemTT = this.getAttribute('data-item-trangthai');
+          if (itemTT === '') {
+              deleteModalLabel.textContent = "Khóa tài khoản user";
+              bd.textContent= "Bạn có muốn khóa tài khoản này?";
+          } else {
+              deleteModalLabel.textContent = "Mở khóa tài khoản user";
+              bd.textContent= "Bạn có muốn mở khóa tài khoản này?";
+          }
+          yesButton.addEventListener('click', function() {
+              deleteForm.action = `users/delete?id=${itemId}&tt=${itemTT}`;
+          });
+
+
+      });
+  });
+
+
+</script>
+
+
+<script>
+  // Hàm search sẽ được gọi khi người dùng nhập vào ô tìm kiếm
+  function searchData() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchUser");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("resultTableU");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[3]; // chỉ tìm kiếm trong cột ID
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = ""; // Hiển thị hàng nếu có từ khóa tìm kiếm
+              } else {
+                  tr[i].style.display = "none"; // Ẩn hàng nếu không phù hợp với từ khóa tìm kiếm
+              }
+          }
+      }
+  }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#resultTable').DataTable();
+      });
+  </script>
+
+
+</body>
+<footer >
+  <%- include('../inc/footer.ejs') %>
+</footer>
+  </html>
+  <link rel="stylesheet" href="https://unpkg.com/@adminkit/core@latest/dist/css/app.css">
+  <link rel="stylesheet" href="./style.css">
+  

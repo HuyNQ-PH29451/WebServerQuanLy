@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+     <link rel="stylesheet" href="../css/app.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+</head>
+ <style>
+    .label-width{
+            width: 140px;
+    }
+    .btn-add{
+            background-color: rgb(0, 26, 255) !important;
+            color: white !important;
+        }
+ </style>
+<body class="m-0 p-0 container-fluid ">
+    
+
+    <%- include('../inc/header') %>
+    <a href="/products" type="button" class="btn btn-add fw-medium float-end mb-2" data-bs-toggle="modal"
+                data-bs-target="#addDonHangTaiQuay" style="margin-left: 950px; width: 100px; height: 35px; background-color: blue;" >New Bill</a>
+        <div class="m-4">
+            <div class="input-group" style="width: 1480px;">
+                <span class="input-group-text col-md-1">Search</span>
+                  <input type="text" class="form-control" placeholder="Name" name="q" id="searchInput" onkeyup="searchData()">
+               
+                
+              </div>
+            <% if (listOrderDetail) { %>
+                <table class="table table-hover table-bordered mt-2 " id="resultTable">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID Đơn Hàng</th>
+                            <th scope="col">Sản Phẩm</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Số Lượng</th>
+                            <th scope="col">Tổng Tiền</th>
+                            <th scope="col">Tên Nhân Viên</th>
+                            <th scope="col">Tên Người Dùng</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Time</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <% listOrderDetail.forEach((item)=>{ %>
+                            <tr class="align-middle">
+                                <td class="text-center">
+                                    <%= item.id %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.Product %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.Size %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.SoLuong %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.TongTien %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.Staff_name %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.Username %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.note %>
+                                </td>
+                                <td class="text-center">
+                                    <%= item.Time %>
+                                </td>
+                                <td class="text-center">
+                                    <button data-item-id="<%= item.id %>" data-item-idDonHang="<%= item.DonHang %>"
+                                        data-item-Product="<%= item.Product %>" data-item-SoLuong="<%= item.SoLuong %>"
+                                        data-item-TongTien="<%= item.TongTien %>" data-item-Staff="<%= item.Staff_name %>"
+                                        data-item-User="<%= item.Username %>" data-item-note="<%= item.note %>" type="button" data-bs-toggle="modal"
+                                        class="btn btn-success m-2" data-bs-target="#updateModal">edit
+                                    </button>
+
+                                    <!-- <button data-item-id="<%= item.id %>" data-item-Product="<%= item.Product %>"
+                                        class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">Delete</button> -->
+                                </td>
+
+                            </tr>
+                            <% }) %>
+
+                    </tbody>
+                </table>
+                <% }else{ %>
+                    <h3>Không có dữ liệu</h3>
+                    <% } %>
+</div>
+                        <div class="modal fade" id="addDonHangTaiQuay" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="addModalLabel">New Bill</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="OrderDetails/newbill" method="post" >
+                                    <div class="modal-body">
+                                        
+                                        <label for="Product" class="form-label" style="margin-top: 10px;">Sản Phẩm</label>
+                                        <select class="form-select mt-2" aria-label="Pick Product" name="Product" id="Product" multiple  onchange="tinhTongTien()">
+                                            <% product.forEach(item=> { %>
+                                                <option value="<%= item.Name %>" id="<%= item.id %>" >
+                                                     <%= item.Name %> 
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        <div style="display: flex; margin-top: 10px;">
+                                            <label style="width: 100px; font-size: medium;" for="SLSP">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SLSP" type="number" id="SLSP" class="form-control" >
+                                            </div>
+                                        
+                                        <div style="display: flex; margin-top: 10px;">
+                                            <label style="width: 100px; font-size: medium;" for="TongTien">
+                                                Tổng tiền
+                                            </label >
+                                            <input name="TongTien" type="text" id="TongTien" class="form-control" readonly>
+                                        </div>
+                                        <label for="Staff_name" class="form-label">Nhân Viên</label>
+                                        <select class="form-select mt-2" aria-label="Pick Staff" name="Staff_name" required >
+                                            <% Staff.forEach(item=> { %>
+                                                <option value="<%= item.Fullname %>">
+                                                    <%= item.Fullname %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        <label for="Username" class="form-label">Người Mua Hàng</label>
+                                        <input name="Username" type="text" id="Username" class="form-control">
+                                        <label for="SIZEBill" class="form-label">Size</label>
+                                        <div  style=" display: flex; ">
+                                            
+                                            <input class="form-check-input"  type="checkbox" value="S" id="Size" name="Size" checked>
+                                            <label style="margin-left: 10px;" for="tienmat">
+                                                S
+                                            </label>
+                                            
+                                            <input class="form-check-input"  type="checkbox" value="M" id="Size" name="Size" style="margin-left: 50px;" >
+                                            <label style="margin-left: 10px;" for="ck">
+                                                M
+                                            </label>
+                                            <input class="form-check-input"  type="checkbox" value="L" id="Size" name="Size" style="margin-left: 50px;" >
+                                            <label style="margin-left: 10px;" for="ck">
+                                                L
+                                            </label>
+                                            <input class="form-check-input"  type="checkbox" value="XL" id="Size" name="Size" style="margin-left: 50px;" >
+                                            <label style="margin-left: 10px;" for="ck">
+                                                XL
+                                            </label>
+                                            
+                                            </div>
+                                            <label for="note" class="form-label">Note</label>
+                                        <input name="note" type="text" id="note" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" >Save</button>
+                                    </div>
+                                </form>
+                        
+                            </div>
+
+                            </div>
+
+                        </div>
+                
+                        <!--modal-edit-->
+                        <div class="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="editModalLabel">Update </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form id="editform" action="OrderDetails/edit" method="post">
+                                        <div class="modal-body">
+                                            <label for="Product" class="form-label" style="margin-top: 10px;">Sản Phẩm</label>
+                                        <select class="form-select mt-2" aria-label="Pick Product" name="Product" id="Product" multiple  onchange="tinhTongTien()">
+                                            <% product.forEach(item=> { %>
+                                                <option value="<%= item.Name %>" id="<%= item.id %>" >
+                                                     <%= item.Name %> 
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        <div style="display: flex; margin-top: 10px;">
+                                            <label style="width: 100px; font-size: medium;" for="SLSP">
+                                            Số Lượng
+                                        </label >
+                                            <input name="SLSP" type="number" id="SLSP" class="form-control" >
+                                            </div>
+                                        
+                                        <div style="display: flex; margin-top: 10px;">
+                                            <label style="width: 100px; font-size: medium;" for="TongTien">
+                                                Tổng tiền
+                                            </label >
+                                            <input name="TongTien" type="text" id="TongTien" class="form-control" readonly>
+                                        </div>
+                                        <label for="Staff_name" class="form-label">Nhân Viên</label>
+                                        <select class="form-select mt-2" aria-label="Pick Staff" name="Staff_name" required >
+                                            <% Staff.forEach(item=> { %>
+                                                <option value="<%= item.Fullname %>">
+                                                    <%= item.Fullname %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        <label for="Username" class="form-label">Người Mua Hàng</label>
+                                        <input name="Username" type="text" id="Username" class="form-control">
+                                        <label for="SIZEBill" class="form-label">Size</label>
+                                        <div  style=" display: flex; ">
+                                            
+                                            <input class="form-check-input"  type="checkbox" value="S" id="Size" name="Size" checked>
+                                            <label style="margin-left: 10px;" for="tienmat">
+                                                S
+                                            </label>
+                                            
+                                            <input class="form-check-input"  type="checkbox" value="M" id="Size" name="Size" style="margin-left: 50px;" >
+                                            <label style="margin-left: 10px;" for="ck">
+                                                M
+                                            </label>
+                                            <input class="form-check-input"  type="checkbox" value="L" id="Size" name="Size" style="margin-left: 50px;" >
+                                            <label style="margin-left: 10px;" for="ck">
+                                                L
+                                            </label>
+                                            <input class="form-check-input"  type="checkbox" value="XL" id="Size" name="Size" style="margin-left: 50px;" >
+                                            <label style="margin-left: 10px;" for="ck">
+                                                XL
+                                            </label>
+                                            
+                                            </div>
+                                            <label for="note" class="form-label">Note</label>
+                                        <input name="note" type="text" id="note" class="form-control">
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">No</button>
+                                            <button type="submit" class="btn btn-primary">update</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--modal-delete-->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="OrderDetails/delete" method="post">
+                                        <div class="modal-body">
+                                            Bạn chắc chắn muốn xóa?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">No</button>
+                                            <button type="submit" class="btn btn-primary">Yes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+        
+        <%- include('../inc/footer') %>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+                integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+                crossorigin="anonymous"></script>
+            <!--script delete-->
+            <script>
+                const btnDelete = document.querySelectorAll('.btn.btn-danger');
+                const deletemodal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                const deleteform = document.querySelector('form[action="OrderDetails/delete"]');
+
+                //click vào button Xóa sẽ mở modal
+                btnDelete.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const itemId = this.getAttribute('data-item-id');
+                        const itemproduct = this.getAttribute('data-item-Product');
+                        console.log(`Item Id: ${itemId}`);
+
+                        // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalBody = deletemodal._element.querySelector('.modal-body');
+                        modalBody.textContent = `Bạn có chắc muốn xóa ${itemproduct} ? `;
+                        // Thay đổi giá trị của thuộc tính action của form khi nút "Delete" được nhấn
+                        deleteform.action = `/OrderDetails/delete/${itemId}`;
+                    })
+                })
+            </script>
+            <!--script edit-->
+            <script>
+                const btnEdit = document.querySelectorAll('.btn.btn-success');
+                const editmodal = new bootstrap.Modal(document.getElementById("updateModal"));
+                const editForm = document.getElementById('editform');
+
+                btnEdit.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const itemId = this.getAttribute('data-item-id');
+                        
+                        const itemProduct = this.getAttribute('data-item-Product');
+                        const itemSoluong = this.getAttribute('data-item-SoLuong');
+                        const itemTongTien = this.getAttribute('data-item-TongTien');
+                        const itemStaff = this.getAttribute('data-item-Staff');
+                        const itemUser = this.getAttribute('data-item-User');
+                        const itemNote=this.getAttribute('data-item-note')
+                        console.log('itemuser:', itemUser);
+                        // Truy xuất phần tử trong modal để cập nhật nội dung
+                        const modalbody = editmodal._element.querySelector('.modal-body');
+                        const inputProduct = editForm.querySelector('#Product');
+                        const inputsoluong = editForm.querySelector('#SLSP');
+                        const inputTongTien = editForm.querySelector('#TongTien');
+                        const inputTenNhanVien = editForm.querySelector('[name="Staff_name"]');
+                        const inputUsername = editForm.querySelector('#Username');
+                        const inputNote = editForm.querySelector('#note');  
+                        
+                        inputProduct.value = itemProduct;
+                        inputsoluong.value = itemSoluong;
+                        inputTongTien.value = itemTongTien;
+                        inputTenNhanVien.value = itemStaff;
+                        inputUsername.value = itemUser;
+                        inputNote.value = itemNote;
+                        const prdOptions = inputProduct.querySelectorAll('option');
+                        prdOptions.forEach(option => {
+                            if (option.value === itemProduct) {
+                                option.setAttribute('selected', 'selected');
+                            } else {
+                                option.removeAttribute('selected');
+                            }
+                        });
+
+                        editForm.action = `OrderDetails/update/${itemId}`;
+                    })
+                })
+            </script>
+
+
+<script>
+    // Hàm search sẽ được gọi khi người dùng nhập vào ô tìm kiếm
+    function searchData() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("resultTable");
+        tr = table.getElementsByTagName("tr");
+  
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1]; // chỉ tìm kiếm trong cột ID
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; // Hiển thị hàng nếu có từ khóa tìm kiếm
+                } else {
+                    tr[i].style.display = "none"; // Ẩn hàng nếu không phù hợp với từ khóa tìm kiếm
+                }
+            }
+        }
+    }
+  </script>
+
+  
+
+  <script>
+   
+    function displayData() {
+        
+    // Get the selected value from the select box
+    var selectedId = document.getElementById('PRDID').value;
+
+    // Reference to the document in Firestore based on the selected ID
+    var docRef = product.doc(selectedId);
+
+    // Get the document data and display it in the inputs
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            var data = doc.data();
+            document.getElementById('TongTien').value = data.TongTien;
+            // document.getElementById('ageInput').value = data.age;
+            // document.getElementById('addressInput').value = data.address;
+        } else {
+            console.log('No such document!');
+        }
+    }).catch(function(error) {
+        console.log('Error getting document:', error);
+    });
+}
+  </script>
+
+
+  <script>
+    // Function to update table with new data
+    function updateTable(listOrderDetail) {
+      // Clear existing table content
+      document.getElementById('table-body').innerHTML = '';
+      
+      // Populate table with new data
+      listOrderDetail.forEach(item => {
+        const row = `  <tr class="align-middle">
+                                <td class="text-center">
+                                    ${item.id} 
+                                </td>
+                                <td class="text-center">
+                                    ${item.Product} 
+                                </td>
+                                <td class="text-center">
+                                    ${item.SoLuong} 
+                                    
+                                </td>
+                                <td class="text-center">
+                                    ${item.TongTien}                                  
+                                </td>
+                                <td class="text-center">
+                                    ${item.Staff_name}                        
+                                </td>
+                                <td class="text-center">
+                                    ${item.Username} 
+                                    
+                                </td>
+                                <td class="text-center">
+                                    ${item.Time} 
+                                    
+                                </td>
+                                <td class="text-center">
+                                   
+                                </td>
+
+                            </tr>`;
+        document.getElementById('table-body').insertAdjacentHTML('beforeend', row);
+      });
+    }
+  
+    // Function to send AJAX request and update table
+    function fetchDataAndUpdateTable() {
+      // Send AJAX request to server
+      fetch('/OrderDetails')
+        .then(response => response.json())
+        .then(listOrderDetail => {
+          // Update table with new data
+          updateTable(listOrderDetail);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  
+    // Call fetchDataAndUpdateTable function initially to populate table
+    fetchDataAndUpdateTable();
+  
+    // Set up WebSocket connection to listen for realtime updates (if needed)
+    const socket = io();
+    socket.on('dataUpdate', (listOrderDetail) => {
+      // Update table with new data when received through WebSocket
+      updateTable(listOrderDetail);
+    });
+  </script>
+
+<script>
+    function tinhTongTien() {
+        var cacMucDaChon = [];
+        var quantities=[];
+        var danhSachMuc = document.getElementById("Product");
+        var Soluong=document.getElementById("SLSP")
+        for (var i = 0; i < danhSachMuc.options.length; i++) {
+            if (danhSachMuc.options[i].selected) {
+                cacMucDaChon.push(danhSachMuc.options[i].id);
+                quantities.push(Soluong.value||1)
+            }
+        }
+        
+        // Gửi các mục đã chọn tới server để tính tổng tiền
+        fetch('/OrderDetails/tinhTongTien', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items: cacMucDaChon,quantities: quantities })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("TongTien").value = parseFloat(data.total);
+            document.getElementById("TongTien").innerText = data.total ;
+        })
+        .catch(error => console.error('Lỗi:', error));
+    }
+    
+</script>
+</body>
+
+</html>
+<link rel="stylesheet" href="https://unpkg.com/@adminkit/core@latest/dist/css/app.css">
+<link rel="stylesheet" href="./style.css">

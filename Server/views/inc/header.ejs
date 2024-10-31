@@ -1,0 +1,588 @@
+<nav class="navbar navbar-expand-lg bg-body-secondary">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand col-md-2">
+            <img class="logo-footer" src="images/LOGOChinh.jpg" alt="Ảnh lỗi" style="width: 80px; height: 80px;">
+        </a>
+        <div class="collapse navbar-collapse col-md-3" id="navbarNavDropdown">
+
+            <ul class="w-100 navbar-nav d-flex justify-content-evenly">
+
+                <li class="nav-item">
+                    <svg style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 24 24">
+                        <path d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 10 21 L 10 15 L 14 15 L 14 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z"></path>
+                    </svg>
+                    <a class="nav-link fw-medium fs-5 " aria-current="page" href="/home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <img style="margin-left: 20px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEHElEQVR4nO2ZTWxVRRTHfy200vIluICwkKBRUAkFNGAEdWGi7DRulMiChQsxLliZAKHBhRIXRhPcKK4IBFYiGo2RYAh+EQnRhVEJJHwskCgfioUCLT5yzH+awzDz7qv0Xt9r+CeT3plz5pzzn3fmzNxbuIUb0AY8BPQCHwO/AGeAy2pnNfYJsAFYBLTTZOgCDgK1YbaDmts0eMsFtxV4FpgLzFCgXXqeK9lWp/82TYJHgasuMEubIrzm9G3uY/xP6ASWAe8r92vKffv7BzC1zlyTnY7mnJWtZbJdOszRFuBcIt97gE/1vAvoSMzvVCGoSbcnYeecfDxZBoF7gO8jh1aBNgJfqr8KmAacVP9rBWO/wB3AU8C3kp2U7ir1zcYbwM+Rj/3A3SNFYqlLhdBWOnkIZof6tson6lSq48A86e5wixDwXKR/WjHcFBYA52Xwc+WxPa9zOve5VQ64F7ik8QG1msZMFhB+PbMR8IpbmM/0bDHM/68kJgJHZGgnMAZ4Xv3t0UF4SuOzgelKu5B+0zNjs9U/JRsB72h8jXzuVP+IYho23nWOJ2ksbM4DkW5Ikd5EwAExmd4oJQM+1Phy9c33rxrbNFwSc5QOgy6fg9FQLj1eShQCTyJFJjSb63FA44+4sR7FMqDYGsZmGbM9EeOMZJMj4kUkcmTiwI5q3Cqlxwd1YkpiCnAR+Ed5HOOQDN7lxtpUWn8oIOHJ/Ah8E+0Pv1B3cj3mKKYLirEQoZzuzsjDebKQctAn+6kF2Z0o11nsl/ILBfLFlIO/ZD+16isk+67ISCiJZqy74Bd5kHLwe2IPBnQ7oqm0H8LrUrKNlUM4W+6nHPwk+7My8rDpLdYk2t3VInclsI3Zr6t3WS9EXyiGhzPypZKfyL1hPiGFw4lKEvCAdKxEloVN8vFiRt6mGGuK+QZskXB9HSevSuc9ysOKBnysl47FfB0mqOxZyszMTJ7pSuMSysMs+egriOWqdCz2ISzX5L11HOxyp3Eu9UYC7c6P+cxhb3Qn+xcfFRw0z0T3ozLREfl6OqP3sruZD10E+3Ups7e2GFadjlVIZFzk61imQk5TzP3hdh42156M4bXu6l4FkfHycdH5tBhS2CO5cWCbOqszrMMb4uMVEZnkbhfB5/lMtqyWfJu/NtsnzBhvSmZ7iIqI3O6+pvj9a7HEWOTPtUF1Up9vwiusvbtXRWSyfPyp/kL1f6tTGAaLgotlVadWQEMxNhuRiW5ftDSRCaOFyHj5+Hu0EOlrdSLd8nGh1Yl0uZO9pYmMGy1EbpOP/lYn0um+3I8KIpdbnUiHfFxpdSJjb5ZIvdaIwZHCGPkYSPitG+NXBQr7KibS7q/mwnBibAhVEGmTD/vcUxqqIIJ82P9CSkOt4lYainJ1JNu+8mg0Ma4Bn7JrOnX5Ve8AAAAASUVORK5CYII=">
+                    <a class="nav-link fw-medium fs-5" href="/products"> Products</a>
+
+                </li>
+                <li class="nav-item" >
+                    <img style="margin-left: 10px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC6UlEQVR4nO2ZXWiOYRjHf+ZzxLAkiQOfs1lTlEU5UEI7c4BoDsbJEFpKdkTKjnzswFdKDtd8TU4wiinNwcpnYhxoSGJMiLG9uvR/67byvs/7PrP7Vu+v7qP3vv7P/36f5/64rhty5PjvmAGsB/YC9cBBoBZYCgwhcAYDVcBDIJGiPQOWECiTgNuO2VdAI3AIqFGzN/NEv38FjgCLCIixjsGnQAUw6C9984ADfd5QAzCSADgtQ21AQYT+NphiYAfwVrHn8cxU4CfwAyjLIn4a0KnBrMAjm2XiXAyNPc4n5o0LMrExhsYcaTzHI60yUR5z2f4G9Pqc9O0aSFFMnS7p2ArohccyMDumzhfpjMETN2Ugzk49Xhqf8UiDTKyNobFQGvfxSK1M1MXQ2CmNY3hkuUxcj6FxSRrr8MhKmfiU5fF8GPBRGhV45IZM7EpxUEyFxeyWxjU8klx+szlnJSmTxiM8ckYmLKHKlk3SaMQjG2TihZKnTKlRrGlU4hE7J53VOalLuUZU8pyjiZ2eTcs7d2WoJIOYUsXYPAuGepnan0FMnWKOExDzZcqyvQkRz1fvFbOYwGiSMdtbClP0Gw1cUd9mAmQy8CZColWkPrajTydQ2iIMpNgp1AXLgwgDSeboHQRMu0zOTVNCSqimFSQTleWZySkp+hVoA/2uQQVFKXBPg7gcoX+jsxkuIABKlNl1O7VfK2ino9Cp2lul8hQwjwHGEqhVygp7ZaZHNeBMyjm2n5xUbLKgfQtYDQz9h/4ZAWx1TqsJlXFOpJnc6bBV7Kgzv6y9BLYD+f3o/3cWV6U7j+SD7LPYBozrx+cUAFucuWbttfKVbLLPPxgFXHSEWweoar6sz8VRk7xkxXCgRULvgDUMPJXOJ9eiYkXGHHZ24Fn4Xdo75MVuuzJipi5velQJ9E25vHTrxjgy+/QPXCUcmuXJrrwjc0dB1YRDtbPgROZDmrtyn60z6iDyAzCbSNNsc86RIwfR+AUnligdzeBw0AAAAABJRU5ErkJggg==">
+                    <a class="nav-link fw-medium fs-5" href="/users">User </a>
+                </li>
+                <li class="nav-item">
+                    <img style="margin-left: 15px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFUlEQVR4nO2aTUtUURiAnzFBaecu0yEIkSRCZGjj2N5oXa6MICQnKDBx4cpf0EIIXLjVZrIPYppol9SiXas2Cq1SqUGnGtppfnDgvXARm+u9cz7uGXrg3cyc98z7zJxz7j33DPwnfdwANoHDBvEL+AjcATKklK0IieOxlFaZjVCR3054XxV9HpgA/ki726SQ6yKjJEYj2k6IyGc8pwPYEZkBPOepiBTwnHsiUsJzLolINa2rV5IlW0l5TUlEJvGcgogU8ZwBEfnu+zzJAD9aZZ6sxLxHMxGrOkTup0Dkqw6RyykQmdM1T6oOJQ6Ai2jiRROFDAP5JvLfo5EHTRQSkDR/XKfIFUcideCsThE1T7YdiCxigFcORIZNiDzU/MH5iL7WTd0WDZ5CZCRGf9ci+prFEG2hfbzpobUPZDHIa0si7zDMlCWRW6ZFhiyI1IBO0yJqnvyMKZKXReC07Z9giXKCXyVO5GyJTBuU+IJFcgZFHtkUOSPnKLol9oBzWOaNgc3TPA6YkQIW8JyrIrKG57TLpudQTrm8piwid2mR85NPvj9O7QoNr8fABVmavWQM+KtxGf7gUuamRpFdoNuVyLIUoS6SPRKViHOVYoMc9UcFJwTHDqqYgGxob3EStQY5v3FEMOF7YxRVT5BjnJdSQEUKU/FWXnuuMcc4/f94uqKGT5/GHGygxvozGTIq1LcaVVCSHI4Avou4FZEfjv4AAAAASUVORK5CYII=">
+                    <a class="nav-link fw-medium fs-5" href="/Orders">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <img style=" margin-left: 5px;width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFUlEQVR4nO2Xu0pdQRSGP42Xwohga23hpbS1ENRKjEWsvDyBxBy1SqFWNuIjaGECPkbeQTSKqHmBgOAlGIuzwoK1YRj22WerxzOjzgcDs2ev2Wf+dZmZA4nXg0TaHk3oBUsS4hHa85Ii4hHa85Ii4hHa85Ii4tFQrzwSaVZEXhpJqZVD6KKWVOweoT0vKSIeoT0vKSIeoT0vKSIeoT0vKSIe7yIiPs/6oRwkCckhdApJKnaP0J6Xtx6RjkYKKbJ9KjPAZQkhavMpRiGtwLYz/wj4CgwBXda0XwGOHbsdoOW5Ql6i/QOWgA8Fa9J3X4AHR0xUQlTEeOkYwoQjZiYmIRqJMnQCs9ZfdmqmcANoloijOumUofXw3eZ8A9qAX/aciQtS7D/MXgu7DBtmf2XFr6zY2EFIIadmP1jCdg6oWi2NOePD9o2LpwppZOt2fnMTGPDWMQrcm5AF7123feMuJiGa5/p8C8zbWD/wx8bXc9aYCbmOQUiW73rwZXWjbRc4s/5ejcMvS63TGIToie2yCPx13v8s2F7XzGY/BiHHOdvvCPAbOAR6aqxPt98T+8bnGISIXTt8eoG+gvVVbK6mX3ssQh7s2lGWSZujO9l0PWMJIGbZUqYWbRaJ7J61VUZ1s4W4NbNiO9JHa9pfda4kVROhfwGiY8oKvJ5QrYm66RQaTR09GPU8ObcT+8YioRdG3Z1yC/s/4mXlgWo4N7oAAAAASUVORK5CYII=">
+                    <a class="nav-link fw-medium fs-5" href="/OrderDetails">Bill</a>
+                </li>
+                <li class="nav-item">
+                    <img style="margin-left: 30px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEV0lEQVR4nO2bXahVRRTHf9fbh31ZWZZ5NaS6UUFoD2U9BNlLL5H0mNCbEYRlRdBbnxIUlGZQkEREFISJQQZ9CGGXk/SgYB9kUZJpZdaVrhaaWScG/jsWw/G095m9zznbvX6wH+5ee/bM/PfMmjVrzgXHcRzHcRzHcRzHcRzHcRyYC6wDDgDthl4HgPXAeC/iTQ5BB9pDcgUtxooIuE4F3y5asAMTwEfUk9D3jdLijSIFs2mbKt7xwDxp8VuRQtnQdXrUo0wBW5rGdWagAk7U2AcOhYDHAy5gIu4DE3Ef2LQpfD5wM7AEuITBUxsBTwVeAv6OtlLvFwjqQ+C7C9gPfAac2RQfOE1CZXX/DOw0f3+TQ4xRhUzh+aPA4ib5wNtNvc8DI7p/p7n/1P+841Hz7GM0bApvMnvO0yPbNtl+MsLG3KBR19ZHO2EYBNwA3APMpHomVeeHHWxrTJvmdLCfC+yRPfi+C0toT+jzCuCtFAGz63fgfvmpqnzgEdUVEpgxj5i2XBbZRpR2y+y3kkbo4wPqc6xDIU4DFgHPAof1gtfkqKvwgT+qji0dbC+aTpwT2VZEvjOF0LfX9a5DwGrgGmmRxAJgt168kmp4U+8/EoUsJwI/yLYjKnOV+bifAtMT2/CE3vU9cCUls0CN/aui4HaxGUmbgfnALOBlc/9u83xYaL7S/T+AKxLrv1R9O1SFeLEzf6aifODTXc4l3o3cxyvGtox0Vutdq6iQRaokRPhV5QPvAL414uzTInLSMWLGQmcVXfhC77uaCjlDlRykP/vhOR0WrXFzZrOzpK0a6lO7QwxaiYChA4PgZGCrWWzCjLCMagGaPawCXtvDFG6VeCayykzdByNhHwd+MfbvgLu67FxiPle5ELZUxnOqJDj7fp+JhPTWPyY7kwX1Ycv2XpfFJ8SxRT5O3ucLsxD4U1PnYvrLmBlde6Mpeq8Ra622dSGl9YG5f2OOOsYVxhxWyFa6eHsqyHLkYVT747ZG4E2R/WvZdkUJhNn64G390iIPK/X87jJEDM70Ok3brCGv9rCVayX6wIe6pLNmGdsLHcp+LFvYyeRhVNvVtkbiGvn9wgtL7EfCCnVfAYdclg+83qSoPtG2znK5aePDHcqvly0MgLxMU+LkYEoywaazlgNn0X9mak8a2jF1DL87ZtoaRkvMZtmC/yzK2er7hrokVC0jUR7uti7P7dUz2yPbDBNwh1U6hYEK2OrBBy43bQiHTN140jwbkr/ZNFxr7i+lxgJOFPSBC02K6sscubgZZiXOAuh9URKil0SwpTZTeLoSqvt1Kpc3lLgAeCdy+EeViD2lhHbVRsBULgJu0a7lPMqjdj5w2KiVDxxGGjOFq8IFTMR9YCLuAxPxKdxvAadUIPzLV9OZ18s/2mRpoI0liNiqcRw41+xw8iZl/zul/7XLOUPTrslefo0xpkPrbDo38ZrSyBuG32k7juM4juM4juM4juM4jsNg+Rf4ZcNZXBYmEAAAAABJRU5ErkJggg==">
+                    <a class="nav-link fw-medium fs-5" href="/Vouchers">Vouchers</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <img id="chatIcon" style="margin-left: 10px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADpklEQVR4nO2aaYhOURjHf5gZZBDGMgkToTAo5YtkGUOSTGq+KFuh5Iuyi2wlWbImERFFQnYiNLYQsmTfs8Uwtuxmrs70f3V7Zy7vve9d3g/+9Xw5557nPP+zPs9zLrhHdaAvMAfYB9wESoCfwBfgGXAV2A1MBroDGaQQugAbgPeA5VKKgWVAxygJdAYOxxl2GVgIDAZygfpAGlATaKqyIcAKzY697Q6gVZgEqgMLtGSMAV+B1UBrD7o6akY+Sdd3YBZQlYCRDZxVp6XAcqCJT3rXAb+k+xDQgICQAzxQRy+B/AD6yANeqY9bQCO/O2gEPFQHF4PowAazl67Z9lxdvxRXA05K8Q0gi+DRGLijPvf6pXSaFD7VaIWFHNuRPjxZZcbwz0CZ1m/YGCkiJUC9ZBStkqLtRIfYsp7iVUFt4KOUdCA6DLAtbXOHuUahFJwiWlQBbssWczQvAdq5UbBWjScRPRbFuTNmz24FmifS+IIaGS81ahQ6OJ1fNNBm1hxRrI+DvPwSRad/eNE7gTpOjb/ro1SIGZonEBJccvICvumDGkSPlgnGN8ahrRXf+KUqw7zNndDVRbC2Mb5xkSqC8HLdYpjLyHOQvfESFc4leqx3SeSFfUvkq/B6tBzKb/PXHvIBY2MK0pT5MIU9IiQy1AMJI/ft98t0FRrHLQpkyCDLo5j7pxyZttMr6ZjAA+YkQcJS/qyCe/DBrbOWJPJsmRrLo+xyOjUeAc1CSvp5SfhZlVyQFU6OE6p87DGHlSh6Au98IGEpYVIBmbZ00IwACKRpTf/wiYTlRKSFzZFs6zOJfKV+LJ/lUmXH4DFV7vfJeJNMGA2cD4CAJdkaT2KPKt5qZpzQXtHcNCWy87RxjdPXDxgFLAbO+XAiWQnIhJhhDW2b3CSauzmM7AjgdAiGWS6lPGnSBniiguca2RiyZPwB275JNbkSMzaWdTeyBpgNbNFLVJmtzmTQj+rdY3wKELAkZv+V48xfPvqg57XRcTF9OnA3BUjcky1/NnkBME8POzM16p2V2HbCwLgZC1vKgD74hFhQFoUsxUeka9+ETeKQPARfYULNgyGSuKhH10CQoRMvDCJv/HzdckKBx7jbS/xRNWgymXrj8MtFtxxkR5BLLN6lGaO8WWlAZIqSfeFyC+Pq9NcdtVme9Vk5lUeATfqBYJuHOOWa3u9TDtnAxEp+/UjYjU9F5AJTgeP/cFpTnogdJvveCxgHzAdWaqn2DuME+w9c4jdPY1U3ZHF4FQAAAABJRU5ErkJggg==">
+                  <a class="nav-link fw-medium fs-5" href="/chat" id="chatIcon"  >Chat</a>
+
+                </li> -->
+
+                <% if (role) { %>
+                    <li class="nav-item">
+                        <img style="margin-left: 30px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAh0lEQVR4nO3YQQrAIAxE0dz/0nYzq4Agatpp+A+6q9A4DkgjAPzF2HzstBuk6v3XMIgbEnFDIm5IxA2JuN11riXSbpBVDDJBImU7solESEQ4WhN05PaOnN4MbBJpN8gqBhESyThaQkeEjmR0ROiI0JGMjggdETqS0RGhI9V/479eHy4fcrT+AeY3ChPCFMSCAAAAAElFTkSuQmCC">
+                        <a class="nav-link fw-medium fs-5" href="/Statistics?Tl=Doanhthu&time=all">Thống Kê</a>
+                    </li>
+                    <li class="nav-item">
+                        <img  style="margin-left: 10px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC0ElEQVR4nO2ZW4iNURTHfwhj0CRzkKYkckkZpOTyoMijNOWBB3nwohAvhhcPSky8yCVMpCi3iAhvJiW5JDIzReOamo46LhMKHZ92ra9OOnPOWnt/Z85R37/W09nf/7/++9vr22vvAylSpEgRgNHAeuAs8AzIAXngCP8J6oHdQB8QFQlnZgk1jslAZ0HS94HtwAKgAThY8FsW2CXGawrjgXeSZA+wtMiYDHAb6P3H7BhqCNclsYcy++WwSAy7Z84xwBgCrABOAM9leXwBtkhCX4GJBr5JBbV0CLgBvBEexzuvEiZmAw/6KeA4Dnjw7inB1wEsBAYlZcIV6/cyJlxM8+CepeC9Z3zTRZGRJVRO7G2ARvyRKBVdQF2IkX0KERe3AjRuKjW2hhh5rxS5EKBxSqnxOGRviJRxNcDIcaXGb2Co704dDcDSumLQafIRGAv8UQq0BBhZZjDS6CvyQikwKsDISKVG1ndPcQ+9Voo0BxiZo9R46SvQYHjlbQFG9ht06nwEBkvfoxFw54wdHho7DXWYC2lXjhlmy9VTpWowks+0N1wRPzWIzTVwNxt4O5XHg5KI23RNnDfwnjHwbiMBNMr61IquVXCuMtRGHzCBhLA54XbltIGvlQSx0iB8TcHXbuBrSdLI6oTr5KiBb01SJjJyStMKuyTLoc3A1xF60+KOl3uBTwbRb8BMBfcU4LOBNyv3YKamcb5cdf40CLn4ACw27iPdRo0fcovjzvr9YhxwyUgcH3ja5Xkr6qW1+WjUzAMni22S02VGrQbcpjaDcLhWflPBpV1k6IibCkl6jLPhlt5UKnMJuA54ZcjnSXwEbjU81GXsp3wxHDhsyGsD8v+FZvDFKtyeb1TmdscN/qUY+Mj3BiMBXFbkl9O+EdeiVAvLFfndLUcSF53b3auFjOTgcvHCCPlCRTUSecnJjGEeO28lo1tySpEiRYoU1Az+Ant08rwwIdfuAAAAAElFTkSuQmCC">
+                        <a class="nav-link fw-medium fs-5" href="/staffs">Staff</a>
+                    </li>
+                <% } %>
+
+
+
+
+
+            </ul>
+
+
+        </div>
+
+
+        <div class="user-info col-md-2">
+            <img style="margin-left: 20px; width: 30px; height: 30px; margin-top: 5px;" alt="Notification Bell" onclick="toggleNotifications()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADj0lEQVR4nO2ZS2xNQRjHf95KQ1gQpSnxKhVtIhEWFqQkUol4rdrETjyChUfFO7WS2FiQCAsRDSpE65FoNEI9Nyp9oCwsCEUbjwpVgkzyn2Rycu/tvefec4/G/SWTtOec+e73PzPzzTffgQwZMvRWJgJVQAfwBbgATOYfoR+wBDgGNAEfgB9AG3ADKAdygfHAe+CPpxlRY8MWsQx4EsE5b+sGXurvy8AYOX9F186FJaA/cNhx9JnefBEwHBgIjANWAJXAL+fZEsdOrq59CkOEcbJaDnwH1klYLPKBu+pj1sYMXR+na2bKpV1EjX68HZiTQN9BwFn1fQHMBK7pfzNqoYkojLBeaoFOoD6GmHue9fMGmMA/IGKY82Ztux3D1jRnzVwE8kgTWTFEjAIade8dsBYYGYfNM+qzlTQJWK35HE1Es+61JPhmV6nfdQIiW+HxlKKLnSr1TqSxIpp0r1n/J0Ke+r5KleNmka0EDgEPgZ+euf4IKAP6RhHR5EOEXfR/FBh8MQTYqB21I8oOfB/YDUyJ0D8VItA68r0RDgUeexx/K1H7gWI9Ew2TT7WmQIRhlmMnYfY4m1FpnInaFI1OiyO+IUkRhp2ydRwf2AgzP8YzU4E1wGngtWf0PgIVwGCSY4ATCd28K27smjBJXSS8O67NgUwEW5oCAZZNsv3cE0Tipl0GcqLcv6M1Y/Kh9UAB0IfUMhfokh9mzfnilgwsJhwKnZd5NBlDB2TkBOmnyBFxKY60v8czgY3dJtELQ0S1EtCkuSmDe+nFIgzznFFJdi/oielBibBclXFTlgkyc24NUgQqy3TqR0xxIAg2O0WJLAJkg7NbTwrAvk1pTOYcKGajO68fa+whWUyUAtn9HPRoWEwIfurM46Rie4Tk9CRpJN+JLKdSlJI8CCuDmO0ca48kKSZbh7PuFE/XuFmgqqEdGb/TbKFsmFNmaBQDX+VIjc83WqH+BwmZHc5ZpNFHaLaFuuWEyC7gd4RTYSKbZpv6mU03FBZJhPlAs11fkSodQVVx5Ga2sm6iYGjUyoktnuulSjDtBrcvxhGgTM+ZqkxotMuJ0VEqKe50+6TD2WJVYkYoUNiCgkl/QuOLnDCfxLzk6N4357gcrTWkKy2JRp0c2RbhXrnumQ+btmRUoUNauz5+NilYhLIJupTI2S4t9hy1cgWAMIsWvosTkZoZgV5FiaZZp1pdbxqJDBn+N/4CZAtEGKGBS68AAAAASUVORK5CYII=">
+            <span id="unreadCount" class="unread-count"></span>
+            <p style="margin-top: 10px;" onclick="toggleNotifications()">Thông Báo</p>
+
+            <ul id="notificationList" class="dropdown-menu "  style="display: none; max-height: 400px; overflow: auto; background-color: white;">
+
+            </ul>
+
+        </div>
+
+
+        <!-- Dùng lớp "d-none d-md-block" để ẩn user-info khi ở kích cỡ điện thoại (nhỏ hơn "md") -->
+        <div class="user-info col-md-1">
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="user-avatar" src="/images/images.jpg" alt="Avatar">
+                    <% if (nameStaff) { %>
+                        <%= nameStaff %>
+                    <% } else { %>
+                        ADMIN
+                    <% } %>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="/personal-information">Personal information</a></li>
+
+                    <li><a class="dropdown-item" href="/change-password">Change password</a></li>
+
+                    <li><a class="dropdown-item" href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div  style="margin-left:30px ;">
+            <img id="chatIcon" style="margin-left: 10px; width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADpklEQVR4nO2aaYhOURjHf5gZZBDGMgkToTAo5YtkGUOSTGq+KFuh5Iuyi2wlWbImERFFQnYiNLYQsmTfs8Uwtuxmrs70f3V7Zy7vve9d3g/+9Xw5557nPP+zPs9zLrhHdaAvMAfYB9wESoCfwBfgGXAV2A1MBroDGaQQugAbgPeA5VKKgWVAxygJdAYOxxl2GVgIDAZygfpAGlATaKqyIcAKzY697Q6gVZgEqgMLtGSMAV+B1UBrD7o6akY+Sdd3YBZQlYCRDZxVp6XAcqCJT3rXAb+k+xDQgICQAzxQRy+B/AD6yANeqY9bQCO/O2gEPFQHF4PowAazl67Z9lxdvxRXA05K8Q0gi+DRGLijPvf6pXSaFD7VaIWFHNuRPjxZZcbwz0CZ1m/YGCkiJUC9ZBStkqLtRIfYsp7iVUFt4KOUdCA6DLAtbXOHuUahFJwiWlQBbssWczQvAdq5UbBWjScRPRbFuTNmz24FmifS+IIaGS81ahQ6OJ1fNNBm1hxRrI+DvPwSRad/eNE7gTpOjb/ro1SIGZonEBJccvICvumDGkSPlgnGN8ahrRXf+KUqw7zNndDVRbC2Mb5xkSqC8HLdYpjLyHOQvfESFc4leqx3SeSFfUvkq/B6tBzKb/PXHvIBY2MK0pT5MIU9IiQy1AMJI/ft98t0FRrHLQpkyCDLo5j7pxyZttMr6ZjAA+YkQcJS/qyCe/DBrbOWJPJsmRrLo+xyOjUeAc1CSvp5SfhZlVyQFU6OE6p87DGHlSh6Au98IGEpYVIBmbZ00IwACKRpTf/wiYTlRKSFzZFs6zOJfKV+LJ/lUmXH4DFV7vfJeJNMGA2cD4CAJdkaT2KPKt5qZpzQXtHcNCWy87RxjdPXDxgFLAbO+XAiWQnIhJhhDW2b3CSauzmM7AjgdAiGWS6lPGnSBniiguca2RiyZPwB275JNbkSMzaWdTeyBpgNbNFLVJmtzmTQj+rdY3wKELAkZv+V48xfPvqg57XRcTF9OnA3BUjcky1/NnkBME8POzM16p2V2HbCwLgZC1vKgD74hFhQFoUsxUeka9+ETeKQPARfYULNgyGSuKhH10CQoRMvDCJv/HzdckKBx7jbS/xRNWgymXrj8MtFtxxkR5BLLN6lGaO8WWlAZIqSfeFyC+Pq9NcdtVme9Vk5lUeATfqBYJuHOOWa3u9TDtnAxEp+/UjYjU9F5AJTgeP/cFpTnogdJvveCxgHzAdWaqn2DuME+w9c4jdPY1U3ZHF4FQAAAABJRU5ErkJggg==">
+            <span id="unreadCount" class="unread-count"></span>
+
+
+            <div id="chatContainer">
+                <div id="chatHeader">
+                    <img style="width: 40px;" src="https://www.shareicon.net/data/128x128/2016/09/15/829466_man_512x512.png">
+                    <h2 style="position: relative;left: -40px">
+                        <% if (nameStaff === 'ADMIN') { %>
+                        Quang Huy
+                        <% } else { %>
+                          ADMIN
+                        <% } %>
+                    </h2>
+                    <button id="closeChat">&times;</button>
+                </div>
+                <div id="chatBody">
+                    <ul id="chatList">
+
+                    </ul>
+                    <!-- Tin nhắn sẽ được hiển thị ở đây -->
+                </div>
+                <div id="chatFooter">
+                    <input type="text" id="messageInput" placeholder="Nhập tin nhắn...">
+                    <button id="sendButton">Gửi</button>
+                </div>
+            </div>
+
+            </ul>
+
+        </div>
+
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    </div>
+
+
+</nav>
+
+
+
+<!--  -->
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    socket.on('notification', (data) => {
+        document.getElementById('notification').innerHTML = data.message;
+        // You can also trigger some UI changes like showing an icon or playing a sound here
+    });
+</script>
+
+<script>
+    // Sử dụng JavaScript để thực hiện yêu cầu AJAX khi nhấn vào icon chuông
+    let isNotificationVisible = false;
+    let allData = [];
+    let unreadCount = 0;
+    function toggleNotifications() {
+        const notificationList = document.getElementById('notificationList');
+
+        if (!isNotificationVisible) {
+
+            fetchData(); // Nếu danh sách không hiển thị, lấy dữ liệu và hiển thị
+            notificationList.style.display = 'block';
+
+        } else {
+
+            notificationList.style.display = 'none';
+            // Nếu danh sách đang hiển thị, ẩn nó
+        }
+
+        isNotificationVisible = !isNotificationVisible; // Đảo ngược trạng thái của biến cờ
+    }
+
+
+
+    function fetchData() {
+        fetch('/Notification/data')
+            .then(response => response.json())
+            .then(data => {
+                allData = data; // Lưu trữ tất cả dữ liệu thông báo
+
+                const notificationList = document.getElementById('notificationList');
+                // Xóa bất kỳ mục nào cũ đã hiển thị
+                notificationList.innerHTML = '';
+                // Thêm mỗi thông báo vào danh sách
+                for (let i = 0; i < Math.min(4, allData.length); i++) {
+                    const listItem = document.createElement('li');
+                    allData.sort((a, b) => {
+  // Chia chuỗi để lấy ra từng phần
+                        const partsA = a.Time.split(' ');
+                        const partsB = b.Time.split(' ');
+
+                        // Tách ngày tháng ra khỏi các phần
+                        const datePartsA = partsA[1].split('/');
+                        const datePartsB = partsB[1].split('/');
+
+                        // Tạo chuỗi định dạng dễ chuyển đổi vào Date
+                        // Định dạng chuẩn là MM/DD/YYYY HH:mm
+                        const dateTimeA = `${datePartsA[1]}/${datePartsA[0]}/${datePartsA[2]} ${partsA[0]}`;
+                        const dateTimeB = `${datePartsB[1]}/${datePartsB[0]}/${datePartsB[2]} ${partsB[0]}`;
+
+                        // Chuyển đổi chuỗi thành đối tượng Date
+                        const dateA = new Date(dateTimeA);
+                        const dateB = new Date(dateTimeB);
+
+                        // Sắp xếp từ cũ đến mới
+                        return dateB - dateA;
+                        });
+
+                    listItem.textContent =  allData[i].TypeNotification + " - Vào Lúc : " + allData[i].Time ; // Thay "notificationText" bằng trường dữ liệu thực tế trong Firestore
+                    // listItem.style.marginTop = '5px';
+                    const image = document.createElement('img'); // Tạo phần tử img
+                    image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAI20lEQVR4nO1YCVSTVxbOOTOEgAuVUcEFFW1FRUVbKy11wQpF64qOG+OuHa3HqtW6zpwz044LO4gsKogIqAgqiOxJSEISQggJBEjY9wpFENlEUOCb816s2iqO7RAr53jPuee88/6X+98v7933ffdnMN7ZO3tnWjG2I3ORxNf4x1Rf46pER+ZCRl8zkffQqqIbM0FcfGZIJaOvmTxwLOr4S6mTMaOvmSJwHOoFy6iTMaMvGNuFuYjr2r81xesvEJ4ZApHPUIi8BkPoOQQ8D4NujgurOsGRZcV424znxFzMdx/ULT07CvLA8VCGTEZ2qAWyQ6ciK8Qc8sAJSPMfh1S/4Ug5bQiua//O+FO61oy3wbju/cpS/UygDJ4MdbglSqKtUR47H2Uxtii9/TmKoucg7/qnUIVNR+aliZD5j0WqzwgIPAyQ6KR//Q9Nnu88sF16bhzUYR+iPNYG1Tx71Kc44J54A+pEDrgrWItqrj0q4xagNNoa+detkBNqAUXgB5D4jYTgtCGSXFj5f0jyXLd+hRI/U6jCLVGZuBANqRvRlvU1Hqn243H2fnTk7MGDzJ1oTNuM2pRV+JGzBGWxNii4/ikFkXFxPMS+w8H3ICD0wt5o8gmuzMWpviOguvIhKuIXokGyiSbeXXAMKNR4d8FRdKq+Q5tiF5qkm3FXuAp3EhajJPpz5EdY0hqRBY6D2NsYPPcB4LrrmL8xAFyP97rlQRNQFGWNWv5qtGXtpgn/nPzzIB6pDqAlYwcaxBtQy1tJj1Nx5ByornwERfBEpJ0fBeHpweA46bW+keQTnXW/kPgaI/vydJQnLECDZD0eq/a/kDz1gmPoyjuIh1m70Sjdgjr+GlQlLaK7QApeGToV6QHvI9XbCHz3gYj5gTlR6wA4zvqN6QFjoY6YieqEJWhM24JO9cGXAyg8hq78Q2hTEgDbcC/FAdWcZU9qYRZyr06H7OJ4SHxHQuD5HpJP6gq0DoDvbtAtv/ABCsKtcIe9FE3p29Cp/q5nAHlH8FD5DZrSt6NOtBbVnKUoj7NB4c3PoLo6A4qLE5B21gSE/NhO+p1aB5DiaQjFxfEouDELd9jL0Szdiq68w68AcBjtyr1oTt+GepEDqtlLURlji4LI2RpuIHXgb4qUM0bguOp3ax2A0GsIMoPNkR9phWrucjTJttN/uWcAh9Ch3I0WugMOqOEuR0WsHQpvztXswCVzSM+PgdDbCMlu+trVTBnnGDpC76HIvGSGgsi5qOEsRzMFcKhHAN0Fh9GWvQfNsq/QIFqHn7j2qIj7AkWRc6C++jEUQRMh9R8N8Rkj8NwHgrxDawB4rozBwjNGyAyahOKoOajhrUCL7Ct0v2IHuvOPoCN7D1oyttMjVMMmAOw0AK7NoLuZ7m8KEjfZbQDYjgwDrQGIO8GcJPQ2RlbIZBRFWqOGZ49WxU6aZM87cBQd2XvRItuOe+L1+Cl5Jcrj7VAcaQ11+Awog82pPhL6GIHnNhAcN70RWgPAdta1EXkPgzJkKkpvERJbhdbMnS8lsWcAjuBRzl5KZhoA9qiMX4jiKGuor81EFgVgChGtgQGI/UFnivYAOLH+KfYZhuzL01B2ex4Vaw8oC788+adsnHsArfIdaEjdgNrklahIXIiSW3ORR8gsZArSA8Yh1WcYrYGEU8yV2gPgqCuXnDOhBFQea4t60Tq0Z+8DCnveAeKPVN+iVb4T9wkA3l9RkfAlSm5ZQx1B2HgKZBfeh8RvBPhu7yHJkemjNQBct37N0vOjkRv2ESrj7NAoWY9HOd++Mnnij9X70Zr5Ne5LN+KuYDWVE6XR854o06nIIPKasvEgcJxZCq0B4LkP6CIyoiDCEncSF6NRuhldr5ARz7jgINoUGj1EAFBpfdsWBdetkHt5OpXWaX4mtD/gOrMatQaAT1nYDIU3ZqM62Z7eLN35PbPwMz1E2HgPmtK3oF649okeskXhzdnIDZsORZAZ0p/ICY6LnnbYWBTAGCDwGYqskEkoiZpDi5Fo/VfdQM9zQXvOXkpmdaK/adg4nnDBXKjCZ9CbSBpgChHlgoGI/hdDv9cBsJ1Y3hK/4ci5bIGKGFvcE65Du/Ib4HUA0Jton+YmEm9ELW8FLeTi6HlQh8+kHwFk5CbyNQbfwwBxTjpbex0A363/Y6n/WNpCViV8ica0TXis+t/nX+OkOzuAtsxdtMWkdZC0GKW359M6yLligYwgUsgmEHgYgu3Mqup1AORzSGaQGQojZlMR10rPf88M/LI6IH0Bkd93U9ahmrsMFbE2KLwxi9aBnGiic2Mg8BoMtku/3q0DnpPecbHPCGRftUBZzHzUC9bSLut1zv+vj1FLxt9xT7SBypDKhAUojiaayBJZwVOR7j8WYt9htDvjOus49B4Ad4MuQja0C0tahPvk+OS+7vF51l525h3EA4XmGNUK1qKKvQRlMTbIv2GFnKvTIL9ghtSzms8tbCdWS+8k78pcTiR0dvBklERZ4y5vBS1GonF+E4Ant9HDnH1okZFdIL3BCirsqDIN/5jecOkBYyD20fTIcW5//uT/BhD9vQ4i/sH4hUd9r4t4RwNwPYwg8h0N2QUzKEMt6OeS0ui5uJNohzr+MjRL1lAnYzJHnpE1ZC35jch3NI1BYpGYL7zn33/q+t2JJ53SOZnkyOxIcmTiZ2c7sWjzTa47WcBoKIPNoA6zQNFNS1TEzEV1Ekl8KRpTV+OBbAM6MrdSJ2MyR56RNWQt+Y06zILGILFITBKbvOP5d5IcEh11TvxmAImOzJZfBSLX21MAGQFjoAyeAHXYNBTf/AQVMdaoYdvRz+lNkjV4KN+Ezpwd1MmYzJFnZA1ZS36jDptGY5BYTwE4vwAASaeYzb8DgM6Jt2YHTukcZ7wpO7ldv8Nl12B47R+Fs0fNqJMxmTu5Tb+d8bZb9HG9WL6XCWRBFsi99hl1MiZzt4+zIhlvu8U7Mc0EnoYN8gumyAk1p07GKZ6G9XGOeiMZfcES/sMy4brohws8BzUR57jqX+szyb+zd8boW/ZfyKh1bV1eCloAAAAASUVORK5CYII=';
+                    // Đặt văn bản thay thế
+                    image.style.width='20px';
+                    image.style.marginLeft='15px';
+                    if (!i.read) { // Nếu item chưa đọc, thêm lớp "unread"
+                        listItem.classList.add('unread');
+                        // Tăng số lượng item chưa đọc
+                    }
+                    listItem.appendChild(image);
+                    listItem.style.margin='5px'
+                    listItem.style.padding = '5px';
+
+                    listItem.style.height='50px'
+                    listItem.classList.add('unread');
+
+                    // Thêm lớp "unread" cho mỗi mục thông báo
+                    listItem.addEventListener('click', () => markAsRead(listItem));// Thêm margin-left 5px cho mỗi item
+                    notificationList.appendChild(listItem);
+                    // const separator = document.createElement('hr'); // Tạo một đường ngang phân cách
+                    // notificationList.appendChild(separator);
+                }
+                const viewAllButton = document.createElement('button');
+                viewAllButton.classList="btn btn-info";
+                viewAllButton.style.width='100%';
+                viewAllButton.style.marginTop='5px';
+                viewAllButton.style.backgroundColor='#87CEFA';
+                viewAllButton.textContent = 'VIEW ALL';
+                viewAllButton.onclick = viewAll;
+                notificationList.appendChild(viewAllButton);
+                updateUnreadCount();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+
+    function viewAll() {
+        const notificationList = document.getElementById('notificationList');
+        notificationList.innerHTML = ''; // Xóa nội dung hiện tại
+
+        // Hiển thị tất cả các thông báo
+        allData.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item.TypeNotification + " - Vào Lúc : " + item.Time; // Thay "notificationText" bằng trường dữ liệu thực tế trong Firestore
+
+            listItem.style.margin='5px'
+            listItem.style.padding = '5px';
+            const image = document.createElement('img'); // Tạo phần tử img
+            image.src = 'data:image/png;base64,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';
+            // Đặt văn bản thay thế
+            image.style.width='20px';
+            image.style.marginLeft='15px';
+            listItem.appendChild(image); // Thêm margin-left 5px cho mỗi item
+            notificationList.appendChild(listItem);
+            // const separator = document.createElement('hr'); // Tạo một đường ngang phân cách
+            // notificationList.appendChild(separator);
+        });
+
+        // Ẩn nút "View All"
+        document.querySelector('button').style.display = 'none';
+
+
+    }
+
+
+
+
+    function markAsRead(item) {
+        item.classList.remove('unread');
+        unreadCount--; // Giảm số lượng item chưa đọc khi đánh dấu là đã đọc
+        updateUnreadCount();
+
+    }
+
+    function updateUnreadCount() {
+        const unreadCountElement = document.getElementById('unreadCount');
+        if (unreadCount > 0) {
+            unreadCountElement.style.display = 'block'; // Hiển thị số lượng item chưa đọc
+            unreadCountElement.textContent = unreadCount; // Cập nhật số lượng trong chuông
+        } else {
+            unreadCountElement.style.display = 'none'; // Ẩn nếu không có item chưa đọc
+        }
+    }
+</script>
+
+<script>
+    var socketchat = io1();
+
+    var form = document.querySelector('#chatform');
+    var input = document.querySelector('#inputchat');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', input.value);
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message', function(msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        document.getElementById('messages').appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+</script>
+
+
+<script>
+    // Mở lại khung chat khi nhấp vào biểu tượng chat
+
+</script>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var chatContainer = document.getElementById('chatContainer');
+        var closeButton = document.getElementById('closeChat');
+        chatContainer.style.display = "none";
+        closeButton.onclick = function() {
+            chatContainer.style.display = "none";
+        };
+
+        // Mở khung chat khi nhấn biểu tượng chat
+        // Đây là một ví dụ, bạn cần thay đổi phần này để kích hoạt khung chat theo nhu cầu của bạn
+        document.getElementById('chatIcon').addEventListener('click', function() {
+            chatContainer.style.display = "block";
+        });
+    });
+
+</script>
+<script>
+    fetch('/Chat/data')
+        .then(response => response.json())
+        .then(data => {
+            const list = data.data[0].messages;
+            const nameStaff = "<%= nameStaff %>";
+       const docid=data.docIds;
+            localStorage.setItem("docid", docid);
+            const dataList = document.getElementById('chatList');
+            for (let i = 0; i < list.length; i++) {
+                const message = list[i]; // Khai báo và gán giá trị message trước khi kiểm tra
+                const listItem = document.createElement('li');
+                listItem.classList.add('no-bullet');
+                listItem.className = 'no-bullet';
+                // Kiểm tra điều kiện sau khi đã có message
+                if (message.type === nameStaff) {
+                    listItem.style.paddingLeft = '10px';
+                    listItem.style.float = 'right';
+                    listItem.style.color='white';
+                    listItem.style.backgroundColor = '#3fd6b3'; // Màu nền xanh dương
+                    listItem.style.width = '60%';
+                    listItem.style.paddingTop = '10px';     // Đệm trên
+                    listItem.style.paddingBottom = '10px';
+                    listItem.style.borderRadius='15px';// Độ rộng 120%
+                    listItem.style.fontSize = '120%';       // Cỡ chữ 120%
+                    listItem.style.marginTop='5%';
+                }else{
+                    listItem.style.transform = 'translateX(-25%)';
+                    listItem.style.paddingLeft = '10px';
+                    listItem.style.color='black';
+                    listItem.style.backgroundColor = '#e2e2e2'; // Màu nền xanh dương
+                    listItem.style.width = '60%';
+                    listItem.style.paddingTop = '10px';     // Đệm trên
+                    listItem.style.paddingBottom = '10px';
+                    listItem.style.borderRadius='15px';// Độ rộng 120%
+                    listItem.style.fontSize = '120%';       // Cỡ chữ 120%
+                    listItem.style.marginTop='5%';
+                    listItem.style.float = 'left';
+                }
+
+                const type = message.type;
+                // type.style.color='black';
+                const msg = message.msg;
+                const text = type + ': ' + msg;
+
+                listItem.textContent = msg;
+
+                // Đảm bảo biến dataList là một element DOM có thể appendChild
+                dataList.appendChild(listItem);
+            }
+        })
+        .catch(error => console.error('Lỗi khi lấy dữ liệu từ Firestore:', error));
+</script>
+<script>
+    const docid = localStorage.getItem("docid");
+    console.log(docid);
+    // Lấy tham chiếu đến các phần tử DOM
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+
+    // Xử lý sự kiện click của nút "Gửi"
+    sendButton.addEventListener('click', () => {
+// Lấy giá trị từ ô nhập
+        const message = messageInput.value;
+
+// Gửi dữ liệu đến server
+        postDataToServer(message);
+
+// Xóa nội dung trong ô nhập
+        messageInput.value = '';
+    });
+    function postDataToServer(msg) {
+        // Tạo đối tượng XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const nameStaff = "<%= nameStaff %>";
+        const url = `http://localhost:3000/Chat/send/?id=${encodeURIComponent(docid)}&msg=${encodeURIComponent(msg)}&type=${encodeURIComponent(nameStaff)}`;
+        // Thiết lập phương thức và URL của yêu cầu
+        xhr.open('GET', url, true);
+
+        // Xử lý sự kiện khi yêu cầu hoàn thành
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Yêu cầu đã được gửi thành công!');
+            } else {
+                console.error('Lỗi khi gửi yêu cầu.');
+            }
+        };
+
+        // Gửi yêu cầu
+        xhr.send();
+        fetch('/Chat/data')
+            .then(response => response.json())
+            .then(data => {
+                const list = data.data[0].messages;
+
+                const docid=data.docIds;
+                localStorage.setItem("docid", docid);
+                console.log(list);
+                const dataList = document.getElementById('chatList');
+                dataList.innerHTML = '';
+                for (let i = 0; i < list.length; i++) {
+                    const listItem = document.createElement('li');
+                    const message = list[i];
+                    const type = message.type;
+                    const msg = message.msg;
+                    listItem.classList.add('no-bullet');
+                    listItem.className = 'no-bullet';
+                    // Kiểm tra điều kiện sau khi đã có message
+                    if (message.type === nameStaff) {
+                        listItem.style.paddingLeft = '10px';
+                        listItem.style.float = 'right';
+                        listItem.style.color='white';
+                        listItem.style.backgroundColor = '#3fd6b3'; // Màu nền xanh dương
+                        listItem.style.width = '60%';
+                        listItem.style.paddingTop = '10px';     // Đệm trên
+                        listItem.style.paddingBottom = '10px';
+                        listItem.style.borderRadius='15px';// Độ rộng 120%
+                        listItem.style.fontSize = '120%';       // Cỡ chữ 120%
+                        listItem.style.marginTop='5%';
+                    }else{
+                        listItem.style.transform = 'translateX(-25%)';
+                        listItem.style.paddingLeft = '10px';
+                        listItem.style.color='black';
+                        listItem.style.backgroundColor = '#e2e2e2'; // Màu nền xanh dương
+                        listItem.style.width = '60%';
+                        listItem.style.paddingTop = '10px';     // Đệm trên
+                        listItem.style.paddingBottom = '10px';
+                        listItem.style.borderRadius='15px';// Độ rộng 120%
+                        listItem.style.fontSize = '120%';       // Cỡ chữ 120%
+                        listItem.style.marginTop='5%';
+                        listItem.style.float = 'left';
+                    }
+
+                    listItem.textContent = msg;
+                    dataList.appendChild(listItem);
+                }
+            })
+            .catch(error => console.error('Lỗi khi lấy dữ liệu từ Firestore:', error));
+    }
+
+</script>
+
+<style>
+
+    .dropdown-menu li {
+        background-color:#E0FFFF;
+        transform: translateY(-3px); /* Di chuyển mục lên trên một chút khi hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng mục */
+        /* Màu nền khi hover */
+    }
+
+    .dropdown-menu li:hover {
+        background-color: #E0FFFF;
+        transform: translateY(-3px); /* Di chuyển mục lên trên một chút khi hover */
+        box-shadow: 0 4px 8px ; /* Đổ bóng mục */
+        /* Màu nền khi hover */
+    }
+
+    .no-bullet {
+        list-style-type: none;
+        /* Các thuộc tính CSS khác bạn muốn áp dụng cho mọi phần tử <li> không có dấu bullet */
+    }
+
+    .unread-count {
+        display: none; /* Ẩn ban đầu */
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        padding: 4px;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    #chatContainer {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        z-index: 9999; /* Đặt z-index cao hơn để khung chat hiển thị trên cùng */
+    }
+
+    #chatHeader {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #chatHeader h2 {
+        margin: 0;
+    }
+
+    #closeChat {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        outline: none;
+    }
+
+    #chatBody {
+        height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    #chatFooter {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+    }
+
+    #messageInput {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+    }
+
+    #sendButton {
+        background-color: #0084ff;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+        outline: none;
+    }
+</style>

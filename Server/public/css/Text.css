@@ -1,0 +1,38 @@
+@-webkit-keyframes my {
+    0% { color: #ff0400;  } 
+    50% { color: #fff;  } 
+    100% { color: #F8CD0A;  } 
+}
+@-moz-keyframes my { 
+    0% { color: #ff0400;  } 
+    50% { color: #fff;  }
+    100% { color: #F8CD0A;  } 
+}
+@-o-keyframes my { 
+    0% { color: #ff0400;  } 
+    50% { color: #fff; } 
+    100% { color: #F8CD0A;  } 
+}
+@keyframes my { 
+    0% { color: #ff0400;  } 
+    50% { color: #fff;  }
+    100% { color: #F8CD0A;  } 
+} 
+.test {
+        background:#fff;
+        font-size:50px;
+        justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-bottom: 50px;
+        font-weight:bold;
+    -webkit-animation: my 1500ms infinite;
+    -moz-animation: my 1500ms infinite; 
+    -o-animation: my 1500ms infinite; 
+    animation: my 1500ms infinite;
+}
+
+.logobanner {
+    display: block; margin-left: auto; margin-right: auto;
+  
+}
